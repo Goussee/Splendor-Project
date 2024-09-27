@@ -1,24 +1,41 @@
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+
 public class Card{
-    private int[] cost;
-    private int value;
-    private String type;
+    private final int[] cost;
+    private final int value;
+    private final int points;
+    private final int tier;
+    private final String color;
     public Card(){
+        //order is r,g,b,w,o
         cost = new int[]{0, 0, 0, 0, 0};
+        tier = 1;
         value = 1;
-        type = "uninstantiated";
+        points = 0;
+        color = "uninstantiated";
     }
-    public Card(int[] cost, int value, String type){
+    public Card(int[] cost, int tier, int value, int points, String color){
         this.cost = cost;
+        this.tier = tier;
         this.value = value;
-        this.type = type;
+        this.points = points;
+        this.color = color;
     }
     public int[] getCost(){
         return cost;
     }
+    public int getTier() {
+        return tier;
+    }
     public int getValue(){
         return value;
     }
-    public String getType(){
-        return type;
+    public int getPoints(){
+        return points;
+    }
+    public String getColor(){
+        return color;
     }
 }
