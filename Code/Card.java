@@ -4,19 +4,19 @@ public class Card{
     private final HashMap<String, Integer> cost;
     private final int value;
     private final int points;
-    private final int tier;
+    private final int level;
     private final String type;
     private final String color;
     public Card(){
         //order is r,g,b,w,o
         cost = new HashMap<String, Integer>();
-        tier = 1;
+        level = 1;
         value = 1;
         points = 0;
 		type = "";
         color = "uninstantiated";
     }
-    public Card( HashMap<String, Integer> cost, int tier, int value, int points, String type,String color){
+    public Card( HashMap<String, Integer> cost, int level, int value, int points, String type,String color){
         this.cost = cost;
         this.tier = tier;
         this.value = value;
@@ -27,8 +27,8 @@ public class Card{
     public HashMap<String, Integer> getCost(){
         return cost;
     }
-    public int getTier() {
-        return tier;
+    public int getLevel() {
+        return level;
     }
     public int getValue(){
         return value;
