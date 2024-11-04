@@ -1,12 +1,10 @@
 import java.util.HashMap;
 
 public class Card{
-    private final HashMap<String, Integer> cost;
-    private final int value;
-    private final int points;
-    private final int level;
-    private final String type;
-    private final String color;
+    public final HashMap<String, Integer> cost;
+    public final int value, points, level;
+    public final String type;
+    public final String color;
     public Card(){
         //order is r,g,b,w,o
         cost = new HashMap<String, Integer>();
