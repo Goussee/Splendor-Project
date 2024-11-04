@@ -21,7 +21,7 @@ public class Card{
         this.points = points;
 		this.type = type;
         this.code = code;
-    }
+    } // testing
     /*public HashMap<String, Integer> getCost(){
         return cost;
     }
