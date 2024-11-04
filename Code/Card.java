@@ -1,6 +1,3 @@
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import javax.imageio.ImageIO;
 
 public class Card{
     private final int[] cost;
@@ -10,6 +7,7 @@ public class Card{
     private final String color;
     public Card(){
         //order is r,g,b,w,o
+        //secret
         cost = new int[]{0, 0, 0, 0, 0};
         tier = 1;
         value = 1;
