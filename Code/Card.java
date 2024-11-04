@@ -24,7 +24,7 @@ public class Card{
 		this.type = type;
         this.color = color;
     }
-    public HashMap<String, Integer> getCost(){
+    /*public HashMap<String, Integer> getCost(){
         return cost;
     }
     public int getLevel() {
@@ -38,5 +38,5 @@ public class Card{
     }
     public String getColor(){
         return color;
-    }
+    }*/
 }
