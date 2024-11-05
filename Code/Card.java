@@ -1,31 +1,32 @@
+import java.util.HashMap;
 
 public class Card{
-    private final int[] cost;
-    private final int value;
-    private final int points;
-    private final int tier;
-    private final String color;
+    public final HashMap<String, Integer> cost;
+    public final int value, points, level;
+    public final String type;
+    public final String code;
     public Card(){
         //order is r,g,b,w,o
-        //secret
-        cost = new int[]{0, 0, 0, 0, 0};
-        tier = 1;
+        cost = new HashMap<String, Integer>();
+        level = 1;
         value = 1;
         points = 0;
-        color = "uninstantiated";
+	type = "";
+        code = "";
     }
-    public Card(int[] cost, int tier, int value, int points, String color){
+    public Card( HashMap<String, Integer> cost, int level, int value, int points, String type,String color){
         this.cost = cost;
         this.tier = tier;
         this.value = value;
         this.points = points;
-        this.color = color;
-    }
-    public int[] getCost(){
+		this.type = type;
+        this.code = code;
+    } // testing
+    /*public HashMap<String, Integer> getCost(){
         return cost;
     }
-    public int getTier() {
-        return tier;
+    public int getLevel() {
+        return level;
     }
     public int getValue(){
         return value;
@@ -33,7 +34,7 @@ public class Card{
     public int getPoints(){
         return points;
     }
-    public String getColor(){
-        return color;
-    }
+    public String getCode(){
+        return code;
+    }*/
 }
