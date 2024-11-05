@@ -1,40 +1,47 @@
 import java.util.HashMap;
 
 public class Card{
-    public final HashMap<String, Integer> cost;
-    public final int value, points, level;
-    public final String type;
+    public final HashMap<String, Integer> cost; //order is w, r, g, b, k
+    public final int value, level;
+    public final String color;
     public final String code;
     public Card(){
-        //order is r,g,b,w,o
         cost = new HashMap<String, Integer>();
         level = 1;
         value = 1;
-        points = 0;
-	type = "";
+	    color = "";
         code = "";
     }
-    public Card( HashMap<String, Integer> cost, int level, int value, int points, String type,String color){
-        this.cost = cost;
-        this.tier = tier;
-        this.value = value;
-        this.points = points;
-		this.type = type;
+    public Card(String code){
         this.code = code;
-    } // testing
-    /*public HashMap<String, Integer> getCost(){
-        return cost;
+        level = Integer.valueOf(code.charAt(0));
+        value = Integer.valueOf(code.charAt(1));
+        color = "" + code.charAt(2);
+        cost = new HashMap<String, Integer>();
+        try{
+            cost.put("w", Integer.valueOf(code.charAt(3)));
+            cost.put("r", Integer.valueOf(code.charAt(4)));
+            cost.put("g", Integer.valueOf(code.charAt(5)));
+            cost.put("b", Integer.valueOf(code.charAt(6)));
+            cost.put("k", Integer.valueOf(code.charAt(7)));
+        }catch(Exception e){
+            System.out.printf("card %s is not working.", code);
+        }
+    }
+
+    public HashMap<String, Integer> getCost(){
+        return this.cost;
     }
     public int getLevel() {
-        return level;
+        return this.level;
     }
     public int getValue(){
-        return value;
+        return this.value;
     }
-    public int getPoints(){
-        return points;
+    public String getColor(){
+        return this.color;
     }
     public String getCode(){
-        return code;
-    }*/
+        return this.code;
+    }
 }
