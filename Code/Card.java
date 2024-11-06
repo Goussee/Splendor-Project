@@ -1,6 +1,6 @@
 import java.util.HashMap;
-public class Card{
 
+public class Card{
     public final HashMap<String, Integer> cost; //order is w, r, g, b, k
     public final int value, level;
     public final String color;
@@ -45,4 +45,3 @@ public class Card{
         return this.code;
     }
 }
-
