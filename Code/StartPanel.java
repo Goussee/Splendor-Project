@@ -5,8 +5,12 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 public class StartPanel extends JPanel{
     private JFrame frame;
+    private boolean showRules;
+    private boolean showNumPlayers;
     public StartPanel(){
         System.out.println();
+        showRules = false;
+        showNumPlayers = false;
     }
     public void paint(Graphics g){
         try{
@@ -17,10 +21,7 @@ public class StartPanel extends JPanel{
             g.fillOval(getWidth()/2-100, getHeight()/2-100, 200, 200);
         }
     }
-    /*
-    public void setFrame(JFrame f){
+    public void setFrame(SplendorFrame f){
         frame = f;
     }
-    */
 }
-

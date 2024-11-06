@@ -6,7 +6,7 @@ public class Card{
     public final String color;
     public final String code;
     public Card(){
-        cost = new HashMap<String, Integer>();
+        cost = new HashMap<>();
         level = 1;
         value = 1;
 	    color = "";
@@ -17,7 +17,7 @@ public class Card{
         level = Integer.valueOf(code.charAt(0));
         value = Integer.valueOf(code.charAt(1));
         color = "" + code.charAt(2);
-        cost = new HashMap<String, Integer>();
+        cost = new HashMap<>();
         try{
             cost.put("w", Integer.valueOf(code.charAt(3)));
             cost.put("r", Integer.valueOf(code.charAt(4)));
