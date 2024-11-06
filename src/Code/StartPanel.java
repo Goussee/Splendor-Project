@@ -19,6 +19,7 @@ public class StartPanel extends JPanel implements MouseListener{
     public void paint(Graphics g){
         g.setColor(showRules ? Color.RED : Color.BLACK);
         g.fillOval(getWidth()/2-100, getHeight()/2-100, 200, 200);
+        g.drawImage(ImageLoader)
     }
     public void setFrame(SplendorFrame f){
         frame = f;
