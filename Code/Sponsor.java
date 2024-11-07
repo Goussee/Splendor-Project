@@ -18,4 +18,3 @@ public class Sponsor{
     }
 }
 
-//testing dhruv
