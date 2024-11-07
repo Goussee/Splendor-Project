@@ -1,9 +1,10 @@
 import java.util.HashMap;
 
 public class Sponsor{
-    private final HashMap<String, Integer> cost;
-    private final String code;
-    private final int value;
+    public final HashMap<String, Integer> cost;
+ 
+    public final String code;
+    public final int value;
     public Sponsor(){
         //order is r-g-b-w-o
         cost = new HashMap<>();
