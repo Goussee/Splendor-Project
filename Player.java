@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class Player implements Comparable<Player>{
+public class Player{
     private String name;
     private HashMap<String, HashSet<Card>> cards;
     private HashMap<String, Integer> tokens;

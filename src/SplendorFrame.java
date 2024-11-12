@@ -12,6 +12,7 @@ public class SplendorFrame extends JFrame{
         setVisible(true);
         panel = new StartPanel();
         add(panel);
+        panel.repaint();
     }
     public void changePanel(String s){
         if(s.contains("game"))

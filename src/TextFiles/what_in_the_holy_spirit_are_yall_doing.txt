@@ -1,0 +1,5 @@
+Hey random ghost here, I have a few questions on some design decisions
+
+1. Why are yall using the compareable interface? this feels decidedly useless
+2. Not really a question, but plz let me organize this file, it is a nightmare to read
+3. 

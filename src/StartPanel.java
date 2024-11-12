@@ -25,7 +25,7 @@ public class StartPanel extends JPanel implements MouseListener{
         */
         Image test = null;
         try {
-            test = ImageIO.read(getClass().getResource("onyx.png"));
+            test = ImageIO.read(getClass().getResource("/Pictures/onyx.png"));
         } catch (IOException e) {
             System.out.println(e);
         }
