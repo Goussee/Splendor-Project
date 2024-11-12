@@ -7,7 +7,9 @@ public class SplendorFrame extends JFrame{
 		setSize(1920,1080);
 		setLocationRelativeTo(null);
 		setResizable(false);
-		setVisible(true);
+        //setExtendedState(JFrame.MAXIMIZED_BOTH); 
+        setUndecorated(true);
+        setVisible(true);
         panel = new StartPanel();
         add(panel);
     }

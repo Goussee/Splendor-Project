@@ -1,9 +1,9 @@
-import javax.imageio.ImageIO;
 import java.awt.Image;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Map;
 import java.util.TreeMap;
+import javax.imageio.ImageIO;
 
 /**
  * Utility class to load images from files
@@ -18,8 +18,7 @@ public final class ImageLoader {
      * Gets an image by filename. Images are cached, so no image is loaded twice
      */
     public static Image get(String filename) {
-        if (images.containsKey(filename)) return images.get(filename);
-        else return load(filename);
+        return images.containsKey(filename) ? images.get(filename) : load(filename);
     }
 
     /**

@@ -1,17 +1,17 @@
 import java.util.HashMap;
 
-public class Sponsor{
+public class Patron{
     public final HashMap<String, Integer> cost;
  
     public final String code;
     public final int value;
-    public Sponsor(){
+    public Patron(){
         //order is r-g-b-w-o
         cost = new HashMap<>();
         value = 0;
         code = "";
     }
-    public Sponsor(String code){
+    public Patron(String code){
         cost = new HashMap<>();
         value = Integer.valueOf(code.charAt(0));
         this.code = code;

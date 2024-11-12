@@ -1,10 +1,10 @@
-import java.awt.Color;
-import java.awt.Graphics;
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+import javax.swing.*;
 public class StartPanel extends JPanel implements MouseListener{
     private JFrame frame;
     private boolean showRules;
@@ -17,8 +17,22 @@ public class StartPanel extends JPanel implements MouseListener{
         addMouseListener(this);
     }
     public void paint(Graphics g){
+        /*
+        BufferedImage test = new BufferedImage(getWidth(), getHeight(), TYPE_INT_RGB);
+        for(int i = 0; i < getWidth(); i++)
+            for(int j = 0; j < getHeight(); j++)
+                test.setRGB(i, j, (int)(Math.random()*16777216));
+        */
+        Image test = null;
+        try {
+            test = ImageIO.read(getClass().getResource("onyx.png"));
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+        g.drawImage(test, getWidth()/2-250, getHeight()/2-250,500,500,null);
         g.setColor(showRules ? Color.RED : Color.BLACK);
         g.fillOval(getWidth()/2-100, getHeight()/2-100, 200, 200);
+        
     }
     public void setFrame(SplendorFrame f){
         frame = f;
