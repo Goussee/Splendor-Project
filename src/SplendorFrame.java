@@ -1,6 +1,5 @@
 import javax.swing.*;
 public class SplendorFrame extends JFrame{
-
     private ParentPanel panel;
 
     public SplendorFrame(){
@@ -10,9 +9,8 @@ public class SplendorFrame extends JFrame{
 		setLocationRelativeTo(null);
 		setResizable(false);
         //setExtendedState(JFrame.MAXIMIZED_BOTH); 
-        //setUndecorated(true); 
+        //setUndecorated(true);
         panel = new StartPanel();
-        //panel.setFrame(this);
         add(panel);
         setVisible(true);
     }
