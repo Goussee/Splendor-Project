@@ -50,14 +50,52 @@ public class Player {//implements Comparable<Player>
     }
 
     boolean canAfford(Card c){
-        int  goldNeeded;
+        int  goldNeeded = 0;
         HashMap<String, Integer> cost = c.getCost();
 
         for(String gem : cost.keySet()){
-            goldNeeded += gems.get(gem) + this.getDiscount(gem) >= cost.get(gem) ? 0 : cost.get(gem) - (tokens.get(gem) - getDiscount(gem));
+            goldNeeded += gems.get(gem) + this.getDiscount(gem) >= cost.get(gem) ? 0 : cost.get(gem) - (gems.get(gem) - getDiscount(gem));
             if(goldNeeded > gems.get("gold"))
                 return false;
         }
         return true;
+    }
+
+    boolean canAfford(Patron p){
+        int cardsNeeded = 0;
+        HashMap<String, Integer> cost = p.getCost();
+
+        for(String gem : cost.keySet()){
+            cardsNeeded += cards.get(gem).size() >= cost.get(gem) ? 0 : cost.get(gem) - gems.get(gem);
+            if(cardsNeeded > 1)
+                return false;
+        }
+        return true;
+    }
+
+    //not yet implemented vvvv
+    public void buy(Card c){
+
+    }
+
+    public void buy(Patron p){
+
+    }
+
+    //getters vvv
+    public HashMap<String, HashSet<Card>> getCards(){
+        return cards;
+    }
+
+    public Card[] getReservedCards(){
+        return reservedCards;
+    }
+
+    public boolean hasReservedCards(){
+        for(Card c : reservedCards){
+            if(c != null)
+                return true;
+        }
+        return false;
     }
 }//end of class
