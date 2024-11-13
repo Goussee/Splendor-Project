@@ -1,23 +1,13 @@
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.util.ArrayList;
 
-public class GamePanel extends JPanel{
-
-
-    private JFrame frame;
+public class GamePanel extends ParentPanel{
     public GamePanel(){
 
     }
     public void paint(Graphics g){
 
     }
-    public void setFrame(SplendorFrame f){
-        frame = f;
-    }
-
     public void mousePressed(MouseEvent e){
 
     }

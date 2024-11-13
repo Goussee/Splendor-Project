@@ -24,7 +24,6 @@ public class Patron{
         }catch(Exception e){
             System.out.printf("patron %s is not working.", code);
         }
-        
     }
     public HashMap<String, Integer> getCost(){
         return cost;
