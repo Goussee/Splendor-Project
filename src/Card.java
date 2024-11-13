@@ -19,11 +19,11 @@ public class Card{
         value = Integer.parseInt("" + code.charAt(1));
         color = "" + code.charAt(2);
         cost = new HashMap<>();
-        cost.put("w", Integer.parseInt(code.substring(3,4)));
-        cost.put("r", Integer.parseInt(code.substring(4,5)));
-        cost.put("g", Integer.parseInt(code.substring(5,6)));
-        cost.put("b", Integer.parseInt(code.substring(6,7)));
-        cost.put("k", Integer.parseInt(code.substring(7,8)));
+        cost.put("white", Integer.parseInt(code.substring(3,4)));
+        cost.put("red", Integer.parseInt(code.substring(4,5)));
+        cost.put("green", Integer.parseInt(code.substring(5,6)));
+        cost.put("bue", Integer.parseInt(code.substring(6,7)));
+        cost.put("black", Integer.parseInt(code.substring(7,8)));
     }
 
     public HashMap<String, Integer> getCost(){
