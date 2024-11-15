@@ -74,12 +74,23 @@ public class Player {//implements Comparable<Player>
     }
 
     //not yet implemented vvvv
-    public void buy(Card c){
-
+    public HashMap<String, Integer> buy(Card c){
+        HashMap<String, Integer> cost = c.cost; 
+        int coinsNeeded = 0;
+        for(String gem : cost.keySet()){
+            if(getDiscount(gem)>= cost.get(gem))
+                cost.put(gem, 0)
+            else if(gems.get(gem) + getDiscount(gem) >= cost.get(gem))
+                cost.put(gem, gems.get(gem)-(cost.get(gem) - getDiscount(gem)));
+            else 
+                coinsNeeded += cost.get(gem) - (getDiscount(gem) + gems.get(gem));
+        }
+        cost.put("gold", coinsNeeded);
+        return cost;
     }
 
     public void buy(Patron p){
-
+        
     }
 
     //getters vvv
