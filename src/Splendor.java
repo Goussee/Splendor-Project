@@ -43,6 +43,6 @@ public class Splendor{
         for(int i = 0; i < patrons.length; i++)
             patrons[i] = new Patron(scan.next());
         scan.close();
-
+                
     }
 }
