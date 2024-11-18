@@ -4,27 +4,31 @@ import java.util.HashMap;
 import java.util.Scanner;
 import java.util.Stack;
 public class Splendor{
-    private HashMap<String, Integer> tokens;
+    private HashMap<String, Integer> gems;
     private Player[] players;
     private Player currentPlayer;
     private Stack<Card> deck1, deck2, deck3;
     private Card[] seen1, seen2, seen3;
     private Patron[] patrons;
     public Splendor(int n) throws Exception{
-        tokens = new HashMap<>();
+        gems = new HashMap<>();
         deck1 = new Stack<>();
         deck2 = new Stack<>();
         deck3 = new Stack<>();
         int numPlayers = (n < 2) ? 2 : (n > 4) ? 4 : n;
         int numTokens = (numPlayers == 4) ? 7 : (numPlayers == 3) ? 5 : 4;
         players = new Player[numPlayers];
+        for(int i = 1; i <= players.length; i++){
+            players[i-1] = new Player("Player " + i);
+        }
+
         patrons = new Patron[numPlayers + 1];
-        tokens.put("white", numTokens);
-        tokens.put("red", numTokens);
-        tokens.put("green", numTokens);
-        tokens.put("blue", numTokens);
-        tokens.put("black", numTokens);
-        tokens.put("gold", 5);
+        gems.put("white", numTokens);
+        gems.put("red", numTokens);
+        gems.put("green", numTokens);
+        gems.put("blue", numTokens);
+        gems.put("black", numTokens);
+        gems.put("gold", 5);
         Scanner scan = new Scanner(new File("cardData.txt"));
         while(scan.hasNext()){
             Card c = new Card(scan.next());
@@ -44,5 +48,42 @@ public class Splendor{
             patrons[i] = new Patron(scan.next());
         scan.close();
         
+    }
+
+    boolean canDraw3(String gem1, String gem2, String gem3){
+        return gems.get(gem1) > 0 && gems.get(gem2) > 0 && gems.get(gem3) > 0;
+    }
+
+    boolean canDraw2(String gem){
+        return gems.get(gem) >= 4;
+    }
+
+    //vvv not working yet
+    public void draw2(String gem){
+
+    }
+    
+    public void draw3(String gem1, String gem2, String gem3){
+
+    }
+
+    public void endTurn(){
+
+    }
+
+    public boolean isEnding(){
+
+    }
+
+    public void endGame(){
+
+    }
+
+    public void fillCard(){
+
+    }
+
+    public Player getWinner(){
+
     }
 }
