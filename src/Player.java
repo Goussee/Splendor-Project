@@ -25,7 +25,7 @@ public class Player {//implements Comparable<Player>
         this.points = p;
     }
 
-    public void addTokens(String gem, int x){
+    public void addGems(String gem, int x){
         for(String t : gems.keySet()){
             if(gem.equals(t)){
                 gems.put(t, gems.get(t) + x);
@@ -79,7 +79,7 @@ public class Player {//implements Comparable<Player>
         int coinsNeeded = 0;
         for(String gem : cost.keySet()){
             if(getDiscount(gem)>= cost.get(gem))
-                cost.put(gem, 0)
+                cost.put(gem, 0);
             else if(gems.get(gem) + getDiscount(gem) >= cost.get(gem))
                 cost.put(gem, gems.get(gem)-(cost.get(gem) - getDiscount(gem)));
             else 
@@ -93,6 +93,10 @@ public class Player {//implements Comparable<Player>
         
     }
 
+    public String getName(){
+        return name;
+    }
+
     //getters vvv
     public HashMap<String, HashSet<Card>> getCards(){
         return cards;
@@ -103,10 +107,6 @@ public class Player {//implements Comparable<Player>
     }
 
     public boolean hasReservedCards(){
-        for(Card c : reservedCards){
-            if(c != null)
-                return true;
-        }
-        return false;
+        return reservedCards[0] != null;
     }
 }//end of class
