@@ -86,12 +86,13 @@ public class Player {//implements Comparable<Player>
                 coinsNeeded += cost.get(gem) - (getDiscount(gem) + gems.get(gem));
         }
         cost.put("gold", coinsNeeded);
+
+        //returns the gems given back to the game
         return cost;
     }
 
     public void buy(Patron p){
-        HashMap<String, Integer> cost = p.getCost();
-       
+        patrons.add(p);
     }
 
     public String getName(){
