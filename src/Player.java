@@ -75,7 +75,7 @@ public class Player {//implements Comparable<Player>
 
     //not yet implemented vvvv
     public HashMap<String, Integer> buy(Card c){
-        HashMap<String, Integer> cost = c.cost; 
+        HashMap<String, Integer> cost = c.getCost(); 
         int coinsNeeded = 0;
         for(String gem : cost.keySet()){
             if(getDiscount(gem)>= cost.get(gem))
@@ -90,7 +90,8 @@ public class Player {//implements Comparable<Player>
     }
 
     public void buy(Patron p){
-        
+        HashMap<String, Integer> cost = p.getCost();
+       
     }
 
     public String getName(){

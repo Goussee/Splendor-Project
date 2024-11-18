@@ -1,10 +1,10 @@
 import java.util.HashMap;
 
 public class Card{
-    public final HashMap<String, Integer> cost; //order is w, r, g, b, k
-    public final int value, level;
-    public final String color;
-    public final String code;
+    private final HashMap<String, Integer> cost; //order is w, r, g, b, k
+    private final int value, level;
+    private final String color;
+    private final String code;
     public Card(){
         cost = new HashMap<>();
         level = 1;
@@ -22,7 +22,7 @@ public class Card{
         cost.put("white", Integer.parseInt(code.substring(3,4)));
         cost.put("red", Integer.parseInt(code.substring(4,5)));
         cost.put("green", Integer.parseInt(code.substring(5,6)));
-        cost.put("bue", Integer.parseInt(code.substring(6,7)));
+        cost.put("blue", Integer.parseInt(code.substring(6,7)));
         cost.put("black", Integer.parseInt(code.substring(7,8)));
     }
 
