@@ -11,6 +11,7 @@ public class SplendorFrame extends JFrame{
         //setExtendedState(JFrame.MAXIMIZED_BOTH); 
         //setUndecorated(true);
         panel = new StartPanel();
+        panel.setFrame(this);
         add(panel);
         setVisible(true);
     }
