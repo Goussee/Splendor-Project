@@ -62,7 +62,7 @@ public class Splendor{
 
     //vvv not working yet
     public void draw2(String gem){
-
+        
     }
     
     public void draw3(String gem1, String gem2, String gem3){
