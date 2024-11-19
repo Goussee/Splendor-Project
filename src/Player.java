@@ -21,8 +21,8 @@ public class Player {//implements Comparable<Player>
         return this.points;
     }
 
-    public void setPoints(int p){
-        this.points = p;
+    public void addPoints(int p){
+        this.points += p;
     }
 
     public void addGems(String gem, int x){
@@ -34,6 +34,13 @@ public class Player {//implements Comparable<Player>
         }
     }
 
+    public int getGemSum(){
+        int sum = 0;
+        for(String key : gems.keySet())
+            sum += gems.get(key);
+        return sum;
+    }
+
     public void removeGems(String gem, int x){
         for(String t : gems.keySet()){
             if(gem.equals(t) && gems.get(t) > 0){
@@ -43,7 +50,7 @@ public class Player {//implements Comparable<Player>
         } 
     }
 
-    public int getDiscount(String gem){//previously pointsOfType
+    public int getDiscount(String gem){ //previously pointsOfType
         int discount = 0;        
         discount += cards.get(gem).size();
         return discount;
