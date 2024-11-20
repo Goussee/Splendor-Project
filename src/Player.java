@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class Player {//implements Comparable<Player>
+public class Player implements Comparable<Player>{
     private String name;
     private HashMap<String, HashSet<Card>> cards;
     private HashMap<String, Integer> gems;
@@ -38,6 +38,13 @@ public class Player {//implements Comparable<Player>
         int sum = 0;
         for(String key : gems.keySet())
             sum += gems.get(key);
+        return sum;
+    }
+
+    public int getCardSum(){
+        int sum = 0;
+        for(String key : cards.keySet())
+            sum += cards.get(key).size();
         return sum;
     }
 
@@ -117,5 +124,13 @@ public class Player {//implements Comparable<Player>
 
     public boolean hasReservedCards(){
         return reservedCards[0] != null;
+    }
+
+    @Override
+    public int compareTo(Player o) {
+        int diff = this.getPoints() - o.getPoints();
+        if(diff != 0)
+            return diff;
+        return this.getCardSum() - o.getCardSum();
     }
 }//end of class
