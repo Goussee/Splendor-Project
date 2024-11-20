@@ -14,7 +14,7 @@ public class SplendorFrame extends JFrame{
         panel.setFrame(this);
         add(panel);
         setVisible(true);
-    }
+    }//end of constructor
 
     public void changePanel(String s){
         if(s.contains("game"))
@@ -22,6 +22,6 @@ public class SplendorFrame extends JFrame{
         else if(s.contains("end"))
             panel = new EndPanel();
         add(panel);
-    }
+    }//end of changePanel
 
-}
+}//end of class

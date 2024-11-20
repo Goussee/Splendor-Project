@@ -8,6 +8,7 @@ public class StartPanel extends ParentPanel implements MouseListener{
     private boolean showRules;
     private boolean showNumPlayers;
     private Image startImg, rulesImg, chooseImg;
+
     public StartPanel(){
         System.out.println();
         showRules = false;
@@ -23,7 +24,8 @@ public class StartPanel extends ParentPanel implements MouseListener{
             System.out.println(e);
         }
         addMouseListener(this);
-    }
+    }//end of constructor
+
     public void paint(Graphics g){
         super.paint(g);
         g.setColor(Color.RED);
@@ -39,11 +41,12 @@ public class StartPanel extends ParentPanel implements MouseListener{
             System.out.println("players");
         }
 
-    }
+    }//end of paint
     
+    //vvv might not be working properly
     public void mouseClicked(MouseEvent e) {
         int x = e.getX(), y = e.getY();
-        System.out.printf("rules: %b, players: %b%n", showRules, showNumPlayers);
+        System.out.printf("rules: %b, players: %b%n", showRules, showNumPlayers);//testing things
         if(!(showRules||showNumPlayers)){
             if(x>getWidth()-110&&x<getWidth()+110&&y>getHeight()+45&&y<getHeight()+135)
                 showNumPlayers = true;
@@ -54,18 +57,23 @@ public class StartPanel extends ParentPanel implements MouseListener{
         } else if(showNumPlayers){
 
         }
+        System.out.printf("rules: %b, players: %b%n", showRules, showNumPlayers);//testing things
         repaint();
-    }
+    }//end of mouseClicked
+
     public void mousePressed(MouseEvent e) {
         
-    }
+    }//end of mousePressed
+
     public void mouseReleased(MouseEvent e) {
 
-    }
+    }//end of mouseReleased
+
     public void mouseEntered(MouseEvent e) {
         
-    }
+    }//end of mouseEntered
+
     public void mouseExited(MouseEvent e) {
         
-    }
-}
+    }//end of mouseExited
+}//end of class
