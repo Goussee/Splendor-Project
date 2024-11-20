@@ -79,20 +79,24 @@ public class StartPanel extends ParentPanel implements MouseListener{
         } else if(showNumPlayers){
             
         }
+        System.out.printf("rules: %b, players: %b%n", showRules, showNumPlayers);//testing things
         repaint();
     }
 
 
     public void mousePressed(MouseEvent e) {
         
-    }
+    }//end of mousePressed
+
     public void mouseReleased(MouseEvent e) {
 
-    }
+    }//end of mouseReleased
+
     public void mouseEntered(MouseEvent e) {
         
-    }
+    }//end of mouseEntered
+
     public void mouseExited(MouseEvent e) {
         
-    }
-}
+    }//end of mouseExited
+}//end of class
