@@ -13,7 +13,7 @@ public class GamePanel extends JPanel{
     private JFrame frame;
     private BufferedImage gameBG;
 
-    public GamePanel(){
+    public GamePanel(int numplayers){
         try{
             //gameBG = ImageIO.read(new File(SplendorMockUIBG.png));
 
