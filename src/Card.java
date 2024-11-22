@@ -19,7 +19,26 @@ public class Card{
         this.code = code;
         level = Integer.parseInt("" + code.charAt(0));
         value = Integer.parseInt("" + code.charAt(1));
-        color = "" + code.charAt(2);
+        switch(code.charAt(2)){
+            case 'r':
+                color = "red";
+                break;
+            case 'w':
+                color = "white";
+                break;
+            case 'g':
+                color = "green";
+                break;
+            case 'b':
+                color = "blue";
+                break;
+            case 'k':
+                color = "black";
+                break;
+            default:
+                color = "hmm";
+
+        }
         cost = new HashMap<>();
         //places the necessary amount of gems to buy the card into the card cost
         cost.put("white", Integer.parseInt(code.substring(3,4)));
@@ -43,5 +62,8 @@ public class Card{
     }//end of getColor
     public String getCode(){
         return this.code;
-    }//end of geCode
-}//end of class
+    }
+    public String toString(){
+        return this.code;
+    }
+}

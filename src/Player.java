@@ -1,4 +1,5 @@
 import java.util.*;
+import javax.lang.model.util.ElementScanner14;
 
 public class Player implements Comparable<Player>{
     private String name;
@@ -11,7 +12,18 @@ public class Player implements Comparable<Player>{
     public Player(String n){
         this.name = n;
         cards = new HashMap<String, HashSet<Card>>();
+        cards.put("white", new HashSet<Card>());
+        cards.put("red", new HashSet<Card>());
+        cards.put("green", new HashSet<Card>());
+        cards.put("blue", new HashSet<Card>());
+        cards.put("black", new HashSet<Card>());
         gems = new HashMap<String, Integer>();
+        gems.put("white", 0);
+        gems.put("red", 0);
+        gems.put("green", 0);
+        gems.put("blue", 0);
+        gems.put("black", 0);
+        gems.put("gold", 0);
         patrons = new HashSet<Patron>();
         reservedCards = new Card[3];
         points = 0;
@@ -58,9 +70,11 @@ public class Player implements Comparable<Player>{
     }
 
     public int getDiscount(String gem){ //previously pointsOfType
-        int discount = 0;        
-        discount += cards.get(gem).size();
-        return discount;
+        try{
+            return cards.get(gem).size();
+        }catch(Exception e){
+            return 0;
+        }
     }
 
     boolean canAfford(Card c){
@@ -92,15 +106,16 @@ public class Player implements Comparable<Player>{
         HashMap<String, Integer> cost = c.getCost(); 
         int coinsNeeded = 0;
         for(String gem : cost.keySet()){
-            if(getDiscount(gem)>= cost.get(gem))
+            if(getDiscount(gem) >= cost.get(gem))
                 cost.put(gem, 0);
             else if(gems.get(gem) + getDiscount(gem) >= cost.get(gem))
-                cost.put(gem, gems.get(gem)-(cost.get(gem) - getDiscount(gem)));
-            else 
-                coinsNeeded += cost.get(gem) - (getDiscount(gem) + gems.get(gem));
+                cost.put(gem, cost.get(gem) - getDiscount(gem));
         }
         cost.put("gold", coinsNeeded);
+        cards.get(c.getColor()).add(c);
 
+        for(String s : cost.keySet())
+            gems.put(s, gems.get(s) - cost.get(s));
         //returns the gems given back to the game
         return cost;
     }
@@ -132,5 +147,20 @@ public class Player implements Comparable<Player>{
         if(diff != 0)
             return diff;
         return this.getCardSum() - o.getCardSum();
+    }
+
+    public String toString(){
+        String output = "";
+        output += "Name: " + name + "\n\n";
+        output += "Inventory: " + gems + "\n";
+        for(String s : cards.keySet()){
+            output += cards.get(s) + "\n";
+        }
+        output += patrons + "\n";
+        if(this.hasReservedCards()){
+            output += reservedCards[0] + "\n" + reservedCards[1] + "\n" + reservedCards[2] + "\n";
+        }
+        output += "\nPoints: " + points + "\n";
+        return output;
     }
 }//end of class
