@@ -28,3 +28,4 @@ public class EndPanel extends ParentPanel implements KeyListener{
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'keyReleased'");
     }
+}
