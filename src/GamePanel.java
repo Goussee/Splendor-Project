@@ -1,7 +1,8 @@
 import java.awt.*;
 import java.awt.event.MouseEvent;
 
-public class GamePanel extends ParentPanel{
+public class GamePanel extends ParentPanel
+{
     public GamePanel(){
 
     }//end of constructor

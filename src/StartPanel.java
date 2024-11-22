@@ -73,7 +73,6 @@ public class StartPanel extends ParentPanel implements MouseListener{
             if(x>810 && x<1085 && y>560 && y<655)
                 showNumPlayers = true;
             else if(x>790&& x<1100 && y>675 && y<750)
-            //else if(x>getWidth()-135&&x<getWidth()+270&&y>getHeight()+180&&y<getHeight()+270)
                showRules = true;
         } else if(showRules){
             showRules = false;

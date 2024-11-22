@@ -4,6 +4,7 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseListener;
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import java.awt.*;
 
 
 public class EndPanel extends ParentPanel {
@@ -12,8 +13,7 @@ public class EndPanel extends ParentPanel {
     private Image background = ImageLoader.get("Endscreen_Backgound.png");
 
     public EndPanel(){
-        
-        
+        int x =5;
     }//end of constructor
 
     public void paint(Graphics g){
