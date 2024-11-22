@@ -11,4 +11,8 @@ public class ParentPanel extends JPanel{
     public void setFrame(SplendorFrame f){
         frame = f;
     }//end of setFrame
+
+    public SplendorFrame getFrame(){
+        return frame;
+    }
 }//end of class

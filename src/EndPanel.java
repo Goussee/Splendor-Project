@@ -1,12 +1,15 @@
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseListener;
 import java.awt.Image;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
 
-public class EndPanel extends ParentPanel {
+public class EndPanel extends ParentPanel implements KeyListener{
     //variables go here vvv
     private JFrame frame;
     private Image background = ImageLoader.get("/Assets/Endscreen_Backgound.png");
@@ -29,6 +32,17 @@ public class EndPanel extends ParentPanel {
         g.drawString("Player "+ " is the winner!", 60, 100);
     }//end of paint
 
-    
-
-}//end of class
+    public void keyTyped(KeyEvent e) {
+        //when 'R' is pressed, restart the game
+    }
+    @Override
+    public void keyPressed(KeyEvent e) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'keyPressed'");
+    }
+    @Override
+    public void keyReleased(KeyEvent e) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'keyReleased'");
+    }
+}
