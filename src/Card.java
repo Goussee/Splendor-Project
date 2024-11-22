@@ -17,7 +17,26 @@ public class Card{
         this.code = code;
         level = Integer.parseInt("" + code.charAt(0));
         value = Integer.parseInt("" + code.charAt(1));
-        color = "" + code.charAt(2);
+        switch(code.charAt(2)){
+            case 'r':
+                color = "red";
+                break;
+            case 'w':
+                color = "white";
+                break;
+            case 'g':
+                color = "green";
+                break;
+            case 'b':
+                color = "blue";
+                break;
+            case 'k':
+                color = "black";
+                break;
+            default:
+                color = "hmm";
+
+        }
         cost = new HashMap<>();
         cost.put("white", Integer.parseInt(code.substring(3,4)));
         cost.put("red", Integer.parseInt(code.substring(4,5)));
@@ -39,6 +58,9 @@ public class Card{
         return this.color;
     }
     public String getCode(){
+        return this.code;
+    }
+    public String toString(){
         return this.code;
     }
 }
