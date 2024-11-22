@@ -9,6 +9,7 @@ public class StartPanel extends ParentPanel implements MouseListener{
     private boolean showNumPlayers;
     private Image startImg, rulesImg, chooseImg;
 
+    //Start panel constructor
     public StartPanel(){
         System.out.println();
         showRules = false;
@@ -18,18 +19,22 @@ public class StartPanel extends ParentPanel implements MouseListener{
         rulesImg = null;
         try{
             startImg = ImageIO.read(getClass().getResource("StartScreenBackground.PNG"));
-            chooseImg = ImageIO.read(getClass().getResource("onyx.PNG"));
+            chooseImg = ImageIO.read(getClass().getResource("StartScreenPlayers.PNG"));
+            rulesImg = ImageIO.read(getClass().getResource("Startscreen_Rules.png"));
 
         }catch(Exception e){
             System.out.println(e);
         }
         addMouseListener(this);
-    }//end of constructor
+    }
 
+    //Start Panel Paint
     public void paint(Graphics g){
         super.paint(g);
         g.setColor(Color.RED);
-        g.drawImage(startImg, 0, 0, getWidth(), getHeight(), null);
+
+        g.drawImage(chooseImg, 0, 0, getWidth(), getHeight(), null);
+            System.out.println("rules");
         if(!(showRules || showNumPlayers)){
             g.drawImage(startImg, 0, 0, getWidth(), getHeight(), null);
             System.out.println("start");
@@ -41,25 +46,44 @@ public class StartPanel extends ParentPanel implements MouseListener{
             System.out.println("players");
         }
 
-    }//end of paint
+    }
+    /*showNumPlayers = true;
+        if(x>590 && y>565 && x<680 && y<685)
+        {
+            System.out.println("Number 2");
+        }
+        else if(x>900 && y>565 && x<990 && y<685)
+        {
+            System.out.println("Number 3");
+        }
+        else if(x>1810 && y>565 && x<1890 && y<685)
+        {
+            System.out.println("Number 4");
+        }*/
     
-    //vvv might not be working properly
-    public void mouseClicked(MouseEvent e) {
+
+    //Mouse clicked
+    public void mouseClicked(MouseEvent e) 
+    {
         int x = e.getX(), y = e.getY();
-        System.out.printf("rules: %b, players: %b%n", showRules, showNumPlayers);//testing things
-        if(!(showRules||showNumPlayers)){
-            if(x>getWidth()-110&&x<getWidth()+110&&y>getHeight()+45&&y<getHeight()+135)
+        System.out.printf("rules: %b, players: %b%n", showRules, showNumPlayers);
+
+        if(!(showRules||showNumPlayers))
+        {
+            if(x>810 && x<1085 && y>560 && y<655)
                 showNumPlayers = true;
-            else if(x>getWidth()-135&&x<getWidth()+270&&y>getHeight()+180&&y<getHeight()+270)
-                showRules = true;
+            else if(x>790&& x<1100 && y>675 && y<750)
+            //else if(x>getWidth()-135&&x<getWidth()+270&&y>getHeight()+180&&y<getHeight()+270)
+               showRules = true;
         } else if(showRules){
             showRules = false;
         } else if(showNumPlayers){
-
+            
         }
         System.out.printf("rules: %b, players: %b%n", showRules, showNumPlayers);//testing things
         repaint();
-    }//end of mouseClicked
+    }
+
 
     public void mousePressed(MouseEvent e) {
         
