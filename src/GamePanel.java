@@ -1,15 +1,29 @@
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.util.ArrayList;
 
 public class GamePanel extends JPanel{
 
 
     private JFrame frame;
+    private BufferedImage gameBG;
     public GamePanel(){
+        try{
+            gameBG = ImageIO.read(new File(SplendorMockUIBG.png));
 
+
+        }
+        catch(Exception e){
+            System.out.println("Exception error.");
+            return;
+
+        }
+        
     }
     public void paint(Graphics g){
 
