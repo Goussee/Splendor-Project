@@ -2,24 +2,29 @@ import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseListener;
+import java.awt.Image;
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import java.awt.*;
 
 
-public class EndPanel extends ParentPanel {
+public class EndPanel extends ParentPanel implements KeyListener{
     //variables go here vvv
     private JFrame frame;
     private Image background = ImageLoader.get("Endscreen_Backgound.png");
-
-    public EndPanel(){
-        int x =5;
-    }//end of constructor
-
     public void paint(Graphics g){
 
     }//end of paint
 
-    
-
-}//end of class
+    public void keyTyped(KeyEvent e) {
+        //when 'R' is pressed, restart the game
+    }
+    @Override
+    public void keyPressed(KeyEvent e) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'keyPressed'");
+    }
+    @Override
+    public void keyReleased(KeyEvent e) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'keyReleased'");
+    }
