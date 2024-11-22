@@ -29,7 +29,7 @@ public class StartPanel extends JPanel implements MouseListener{
         } catch (IOException e) {
             System.out.println(e);
         }
-        g
+        
     }
     public void setFrame(SplendorFrame f){
         frame = f;

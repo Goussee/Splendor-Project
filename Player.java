@@ -14,6 +14,7 @@ public class Player implements Comparable<Player>{
         tokens = new HashMap<String, Integer>();
         patrons = new HashSet<Patron>();
         reservedCards = new Card[3];
+        
         points = 0;
     }
 
