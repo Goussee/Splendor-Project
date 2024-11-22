@@ -2,8 +2,8 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 
 public class GamePanel extends ParentPanel{
-    public GamePanel(){
-
+    public GamePanel(int numPlayers) throws Exception{
+        Splendor game = new Splendor(numPlayers);
     }//end of constructor
     public void paint(Graphics g){
 

@@ -16,12 +16,11 @@ public class SplendorFrame extends JFrame{
         setVisible(true);
     }//end of constructor
 
-    public void changePanel(String s){
-        if(s.contains("game"))
-            panel = new GamePanel();
-        else if(s.contains("end"))
-            panel = new EndPanel();
-        add(panel);
+    public void endGame(String s){
+        panel = new EndPanel();
     }//end of changePanel
+    public void startGame(int numPlayers) throws Exception{
+        panel = new GamePanel(numPlayers);
+    }
 
 }//end of class

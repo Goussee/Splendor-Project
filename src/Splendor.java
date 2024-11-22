@@ -41,7 +41,12 @@ public class Splendor{
         gems.put("blue", numTokens);
         gems.put("black", numTokens);
         gems.put("gold", 5);
-        Scanner scan = new Scanner(new File("cardData.txt"));
+        Scanner scan = new Scanner(System.in);
+        try{
+            scan = new Scanner(new File("cardData.txt"));
+        }catch(Exception e){
+            System.out.println(e);
+        }
 
         while(scan.hasNext()){
             Card c = new Card(scan.next());

@@ -32,41 +32,28 @@ public class StartPanel extends ParentPanel implements MouseListener{
     public void paint(Graphics g){
         super.paint(g);
         g.setColor(Color.RED);
-
         g.drawImage(chooseImg, 0, 0, getWidth(), getHeight(), null);
-            System.out.println("rules");
+        
         if(!(showRules || showNumPlayers)){
             g.drawImage(startImg, 0, 0, getWidth(), getHeight(), null);
-            System.out.println("start");
+            //System.out.println("start");
         } else if(showRules){
             g.drawImage(rulesImg, 0, 0, getWidth(), getHeight(), null);
-            System.out.println("rules");
+            //System.out.println("rules");
         } else if(showNumPlayers){
             g.drawImage(chooseImg, 0, 0, getWidth(), getHeight(), null);
-            System.out.println("players");
+            g.drawRect(getWidth()/2-50, getHeight()/2+45, 100, 120); //3
+            g.drawRect(getWidth()/2-350, getHeight()/2+45, 100, 120);
+            g.drawRect(getWidth()/2+250, getHeight()/2+45, 100, 120);
+            //System.out.println("players");
         }
 
     }
-    /*showNumPlayers = true;
-        if(x>590 && y>565 && x<680 && y<685)
-        {
-            System.out.println("Number 2");
-        }
-        else if(x>900 && y>565 && x<990 && y<685)
-        {
-            System.out.println("Number 3");
-        }
-        else if(x>1810 && y>565 && x<1890 && y<685)
-        {
-            System.out.println("Number 4");
-        }*/
     
-
-    //Mouse clicked
     public void mouseClicked(MouseEvent e) 
     {
         int x = e.getX(), y = e.getY();
-        System.out.printf("rules: %b, players: %b%n", showRules, showNumPlayers);
+        //System.out.printf("rules: %b, players: %b%n", showRules, showNumPlayers);
 
         if(!(showRules||showNumPlayers))
         {
@@ -78,9 +65,25 @@ public class StartPanel extends ParentPanel implements MouseListener{
         } else if(showRules){
             showRules = false;
         } else if(showNumPlayers){
-            
+            if(getHeight()/2+45<y&&y<getHeight()/2+165){
+                int numPlayers = 0;
+                if(getWidth()/2-350<x&&x<getWidth()/2-250)
+                    numPlayers = 2;
+                else if(getWidth()/2-50<x&&x<getWidth()/2+50)
+                    numPlayers = 3;
+                else if(getWidth()/2+250<x&&x<getWidth()/2+350)
+                    numPlayers = 4;
+                if(numPlayers != 0){
+                    try {
+                        System.out.println("num players: " + numPlayers);
+                        super.getFrame().startGame(numPlayers);
+                    } catch (Exception e1) {
+                        e1.printStackTrace();
+                    }
+                }
+            }
         }
-        System.out.printf("rules: %b, players: %b%n", showRules, showNumPlayers);//testing things
+        //System.out.printf("rules: %b, players: %b%n", showRules, showNumPlayers);//testing things
         repaint();
     }
 

@@ -17,7 +17,7 @@ public class EndPanel extends ParentPanel implements KeyListener{
     }//end of constructor
 
     public void paint(Graphics g){
-
+        
     }//end of paint
 
     public void keyTyped(KeyEvent e) {
