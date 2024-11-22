@@ -1,6 +1,7 @@
 import javax.swing.*;
 public class SplendorFrame extends JFrame{
-    private JPanel panel;
+    private ParentPanel panel;
+
     public SplendorFrame(){
         super("Splendor Game");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -8,16 +9,18 @@ public class SplendorFrame extends JFrame{
 		setLocationRelativeTo(null);
 		setResizable(false);
         //setExtendedState(JFrame.MAXIMIZED_BOTH); 
-        setUndecorated(true);
-        setVisible(true);
+        //setUndecorated(true);
         panel = new StartPanel();
+        panel.setFrame(this);
         add(panel);
+        setVisible(true);
+    }//end of constructor
+
+    public void endGame(String s){
+        panel = new EndPanel();
+    }//end of changePanel
+    public void startGame(int numPlayers) throws Exception{
+        panel = new GamePanel(numPlayers);
     }
-    public void changePanel(String s){
-        if(s.contains("game"))
-            panel = new GamePanel();
-        else if(s.contains("end"))
-            panel = new EndPanel();
-        add(panel);
-    }
-}
+
+}//end of class

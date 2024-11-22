@@ -6,6 +6,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Testing",
+            "request": "launch",
+            "mainClass": "Testing",
+            "projectName": "Splendor-Project_e18201a2"
+        },
+        {
+            "type": "java",
+            "name": "SplendorRunner",
+            "request": "launch",
+            "mainClass": "SplendorRunner",
+            "projectName": "Splendor-Project_bcfb5eec"
+        },
+        {
+            "type": "java",
             "name": "SplendorRunner",
             "request": "launch",
             "mainClass": "SplendorRunner",
