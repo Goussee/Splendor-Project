@@ -10,6 +10,8 @@ public class SplendorFrame extends JFrame{
 		setResizable(false);
         //setExtendedState(JFrame.MAXIMIZED_BOTH); 
         //setUndecorated(true);
+        //Player[] testing = {new Player("Player 5"), new Player("player 9")};
+
         panel = new StartPanel();
         panel.setFrame(this);
         add(panel);

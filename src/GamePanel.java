@@ -1,30 +1,16 @@
-import javax.imageio.ImageIO;
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.util.ArrayList;
+import javax.swing.*;
 
-public class GamePanel extends JPanel{
+public class GamePanel extends ParentPanel{
 
 
     private JFrame frame;
     private BufferedImage gameBG;
 
-    public GamePanel( int numPlayers){
-        try{
-            gameBG = ImageIO.read(getClass().getResource("Game_Background.png"));
-            
-
-        }
-        catch(Exception e){
-            System.out.println("Exception error.");
-            return;
-
-        }
-        
+    public GamePanel(int numPlayers) throws Exception{
+        Splendor game = new Splendor(numPlayers);
     }
 
     public void paint(Graphics g){
