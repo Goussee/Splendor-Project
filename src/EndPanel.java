@@ -29,12 +29,15 @@ public class EndPanel extends ParentPanel{
         //winner text
         g.setColor(new Color(255, 60, 79) );
         g.setFont(new Font("Consolas", 0, 70));
-        g.drawString("Player " + " is the winner!", 60, 100);
+        g.drawString(players[0].getName() + " is the winner!", 60, 100);
 
         //rest of the players text
         g.setColor(new Color(0, 255, 0));
-        g.drawString("hello wolrd:648 point", 60, 290);
-        g.drawString("hello wolrd: fjhd;s", 60, 390);
+        int yPos = 190;
+        for(int i = 0; i < players.length; i++){
+            g.drawString(players[i].getName() + ": " + players[i].getPoints() + " pts.", 60, yPos + 100);
+            yPos += 100;
+        }
     }//end of paint
 
 }

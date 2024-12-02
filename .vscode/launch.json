@@ -9,6 +9,13 @@
             "name": "Testing",
             "request": "launch",
             "mainClass": "Testing",
+            "projectName": "Splendor-Project_8a9b0673"
+        },
+        {
+            "type": "java",
+            "name": "Testing",
+            "request": "launch",
+            "mainClass": "Testing",
             "projectName": "Splendor-Project_e18201a2"
         },
         {
