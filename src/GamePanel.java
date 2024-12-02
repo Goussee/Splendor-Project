@@ -4,10 +4,9 @@ import java.awt.image.BufferedImage;
 import javax.swing.*;
 
 public class GamePanel extends ParentPanel{
-
-
     private JFrame frame;
     private BufferedImage gameBG;
+ 
 
     public GamePanel(int numPlayers) throws Exception{
         Splendor game = new Splendor(numPlayers);
@@ -15,10 +14,17 @@ public class GamePanel extends ParentPanel{
 
     public void paint(Graphics g){
 
+
     }//end of paint
+
+    
     public void mousePressed(MouseEvent e){
+        
+
 
     }//end of mousePressed
+
+
 
     public void mouseReleased(MouseEvent e){
 
