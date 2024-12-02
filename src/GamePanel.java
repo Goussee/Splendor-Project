@@ -14,12 +14,11 @@ public class GamePanel extends ParentPanel{
 
     public void paint(Graphics g){
 
-
+        g.drawImage(gameBG, 0, 0, getWidth(), getHeight(), null);
     }//end of paint
 
     
     public void mousePressed(MouseEvent e){
-        
 
 
     }//end of mousePressed
