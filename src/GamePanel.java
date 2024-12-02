@@ -13,10 +13,10 @@ public class GamePanel extends JPanel{
     private JFrame frame;
     private BufferedImage gameBG;
 
-    public GamePanel(){
+    public GamePanel( int numPlayers){
         try{
-            //gameBG = ImageIO.read(new File(SplendorMockUIBG.png));
-
+            gameBG = ImageIO.read(getClass().getResource("Game_Background.png"));
+            
 
         }
         catch(Exception e){
@@ -28,7 +28,7 @@ public class GamePanel extends JPanel{
     }
 
     public void paint(Graphics g){
-
+        g.drawImage(gameBG, 0, 0, getWidth(), getHeight(), null);
     }//end of paint
     public void mousePressed(MouseEvent e){
 
