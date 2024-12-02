@@ -7,7 +7,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
 
-public class GamePanel extends JPanel{
+public class GamePanel extends ParentPanel{
 
 
     private JFrame frame;
