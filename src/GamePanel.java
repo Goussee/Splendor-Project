@@ -9,7 +9,6 @@ public class GamePanel extends ParentPanel{
     private JFrame frame;
     private BufferedImage gameBG;
 
-
     public GamePanel(int numPlayers) throws Exception{
         Splendor game = new Splendor(numPlayers);
     }
