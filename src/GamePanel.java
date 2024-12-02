@@ -4,10 +4,15 @@ import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import javax.swing.*;
 
+<<<<<<< HEAD
 public class GamePanel extends ParentPanel implements MouseListener{
 
+=======
+public class GamePanel extends ParentPanel{
+>>>>>>> de37f33e095ea730421e8517bc61fbd050e9eebd
     private JFrame frame;
     private BufferedImage gameBG;
+ 
 
     public GamePanel(int numPlayers) throws Exception{
         repaint();
@@ -17,13 +22,24 @@ public class GamePanel extends ParentPanel implements MouseListener{
     }
 
     public void paint(Graphics g){
+<<<<<<< HEAD
         super.paint(g);
         g.drawRect(0, 0, 500, 500);
     }//end of paint
 
+=======
+
+        g.drawImage(gameBG, 0, 0, getWidth(), getHeight(), null);
+    }//end of paint
+
+    
+>>>>>>> de37f33e095ea730421e8517bc61fbd050e9eebd
     public void mousePressed(MouseEvent e){
 
+
     }//end of mousePressed
+
+
 
     public void mouseReleased(MouseEvent e){
 

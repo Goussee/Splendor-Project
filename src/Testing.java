@@ -12,5 +12,7 @@ public class Testing{
         if(p.canAfford(c))
             p.buy(c);
         System.out.println(p);
+
+        
     }
 }
