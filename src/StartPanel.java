@@ -50,7 +50,7 @@ public class StartPanel extends ParentPanel implements MouseListener{
 
     }
     
-    public void mouseClicked(MouseEvent e) 
+    public void mousePressed(MouseEvent e) 
     {
         int x = e.getX(), y = e.getY();
         //System.out.printf("rules: %b, players: %b%n", showRules, showNumPlayers);
@@ -87,7 +87,7 @@ public class StartPanel extends ParentPanel implements MouseListener{
     }
 
 
-    public void mousePressed(MouseEvent e) {
+    public void mouseClicked(MouseEvent e) {
         
     }//end of mousePressed
 

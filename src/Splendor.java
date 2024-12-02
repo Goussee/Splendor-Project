@@ -1,4 +1,3 @@
-import java.io.File;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
@@ -43,34 +42,41 @@ public class Splendor{
         gems.put("gold", 5);
         Scanner scan = new Scanner(System.in);
         try{
-            scan = new Scanner(new File("cardData.txt"));
+            scan = new Scanner(getClass().getResourceAsStream("cardData.txt"));
+            
+            while(scan.hasNext()){
+                Card c = new Card(scan.next());
+                if(c.getLevel() == 1)
+                    deck1.add(c);
+                else if(c.getLevel() == 2)
+                    deck2.add(c);
+                else if(c.getLevel() == 3)
+                    deck3.add(c);
+            }
+            for(int i = 0; i < 4; i++){
+                seen1[i] = deck1.pop();
+                seen2[i] = deck2.pop();
+                seen3[i] = deck3.pop();
+            }
+
+            scan.close();
+            
         }catch(Exception e){
             System.out.println(e);
         }
-
-        while(scan.hasNext()){
-            Card c = new Card(scan.next());
-            if(c.getLevel() == 1)
-                deck1.add(c);
-            else if(c.getLevel() == 2)
-                deck2.add(c);
-            else if(c.getLevel() == 3)
-                deck3.add(c);
-        }
-        for(int i = 0; i < 4; i++){
-            seen1[i] = deck1.pop();
-            seen2[i] = deck2.pop();
-            seen3[i] = deck3.pop();
-        }
-
-        scan.close();
+        System.out.println("tried cardData");
         Collections.shuffle(deck1);
         Collections.shuffle(deck2);
         Collections.shuffle(deck3);
-        scan = new Scanner(new File("patronData.txt"));
-        for(int i = 0; i < patrons.length; i++)
-            patrons[i] = new Patron(scan.next());
-        scan.close();
+        try{
+            scan = new Scanner(getClass().getResourceAsStream("patronData.txt"));
+            for(int i = 0; i < patrons.length; i++)
+                patrons[i] = new Patron(scan.next());
+            scan.close();
+        }catch(Exception e){
+            System.out.println("patronData not working...");
+        }
+        System.out.println("tried patronData");
     }//end of constructor
 
     boolean canDraw3(String gem1, String gem2, String gem3){
@@ -110,8 +116,7 @@ public class Splendor{
     public void endTurn(){
         while(players[currentPlayer].getGemSum() > 10){
             gameState = "removeTokens";
-        }
-        if(isEnding()){
+        } if(isEnding()) {
             int nextPlayer = currentPlayer == players.length - 1 ? 0 : currentPlayer + 1;
             if(nextPlayer == lastPlayer){
                 endGame();
@@ -121,6 +126,7 @@ public class Splendor{
             isEnding = players[currentPlayer].getPoints() >= 15;
         }
         currentPlayer = currentPlayer == players.length - 1 ? 0 : currentPlayer + 1;
+        
     }//end of endTurn
 
     public boolean isEnding(){
@@ -170,6 +176,10 @@ public class Splendor{
                     break;
             }
         return taken;
+    }
+
+    public Player[] getPlayers(){
+        return players;
     }
 
     public Player getWinner(){
