@@ -20,14 +20,26 @@ public class GamePanel extends ParentPanel implements MouseListener{
             e.printStackTrace();
         }
         addMouseListener(this);
-        gameBG = ImageLoader.get("/Assets/SplendorMockUIBG.png").getScaledInstance(1920, 1080, Image.SCALE_SMOOTH);
+
+        switch(numPlayers){
+            case 2 : 
+                gameBG = ImageLoader.get("/Assets/GamePanelHelp.png").getScaledInstance(1920, 1080, Image.SCALE_SMOOTH);
+                break;
+            case 3: 
+                gameBG = ImageLoader.get("/Assets/GamePanelHelp.png").getScaledInstance(1920, 1080, Image.SCALE_SMOOTH);
+                break;
+            case 4: 
+                gameBG = ImageLoader.get("/Assets/GamePanelHelp.png").getScaledInstance(1920, 1080, Image.SCALE_SMOOTH);
+                break;
+        }
+
+        gameBG = ImageLoader.get("/Assets/GamePanelHelp.png").getScaledInstance(1920, 1080, Image.SCALE_SMOOTH);
         System.out.println("hi");
     }
 
     public void paint(Graphics g){
         super.paint(g);
         g.drawImage(gameBG, 0, 0, null);
-        g.drawRect(0, 0, 500, 500);
     }//end of paint
 
     public Player[] getPlayers(){
@@ -57,7 +69,7 @@ public class GamePanel extends ParentPanel implements MouseListener{
     }//mouseClicked
 
     public void endGame(){
-        this.getFrame().endGame(game.getPlayers());
+        //this.getFrame().endGame(game.getPlayers());
     }
 
     
