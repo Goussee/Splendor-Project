@@ -26,7 +26,7 @@ public class StartPanel extends ParentPanel implements MouseListener{
         }
         addMouseListener(this);
     }
-
+    
     //Start Panel Paint
     public void paint(Graphics g){
         super.paint(g);
@@ -35,16 +35,10 @@ public class StartPanel extends ParentPanel implements MouseListener{
         
         if(!(showRules || showNumPlayers)){
             g.drawImage(startImg, 0, 0, getWidth(), getHeight(), null);
-            //System.out.println("start");
         } else if(showRules){
             g.drawImage(rulesImg, 0, 0, getWidth(), getHeight(), null);
-            //System.out.println("rules");
         } else if(showNumPlayers){
             g.drawImage(chooseImg, 0, 0, getWidth(), getHeight(), null);
-            g.drawRect(getWidth()/2-50, getHeight()/2+45, 100, 120); //3
-            g.drawRect(getWidth()/2-350, getHeight()/2+45, 100, 120);
-            g.drawRect(getWidth()/2+250, getHeight()/2+45, 100, 120);
-            //System.out.println("players");
         }
 
     }
@@ -75,7 +69,6 @@ public class StartPanel extends ParentPanel implements MouseListener{
                 else if(getWidth()/2+250<x&&x<getWidth()/2+350)
                     numPlayers = 4;
                 if(numPlayers != 0){
-                    System.out.println("newm game with " + numPlayers);
                     try {
                         super.getFrame().gameScreen(numPlayers);
                     } catch (Exception ex) {

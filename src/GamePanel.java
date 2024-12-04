@@ -1,9 +1,6 @@
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.image.BufferedImage;
-
-import javax.imageio.ImageIO;
 import javax.swing.*;
 
 public class GamePanel extends ParentPanel implements MouseListener{
@@ -20,8 +17,7 @@ public class GamePanel extends ParentPanel implements MouseListener{
             e.printStackTrace();
         }
         addMouseListener(this);
-        gameBG = ImageLoader.get("/Assets/SplendorMockUIBG.png").getScaledInstance(1920, 1080, Image.SCALE_SMOOTH);
-        System.out.println("hi");
+        gameBG = ImageLoader.get("/Assets/GamePanelHelp.png").getScaledInstance(1920, 1080, Image.SCALE_SMOOTH);
     }
 
     public void paint(Graphics g){
@@ -57,7 +53,7 @@ public class GamePanel extends ParentPanel implements MouseListener{
     }//mouseClicked
 
     public void endGame(){
-        this.getFrame().endGame(game.getPlayers());
+        this.getFrame().endScreen(game.getPlayers());
     }
 
     
