@@ -5,14 +5,16 @@ import java.awt.image.BufferedImage;
 import javax.swing.*;
 
 public class GamePanel extends ParentPanel implements MouseListener{
-
-    private JFrame frame;
     private BufferedImage gameBG;
     private Splendor game;
 
-    public GamePanel(int numPlayers) throws Exception{
+    public GamePanel(int numPlayers){
         repaint();
-        game = new Splendor(numPlayers);
+        try {
+            game = new Splendor(numPlayers);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         addMouseListener(this);
         System.out.println("hi");
     }
@@ -21,6 +23,10 @@ public class GamePanel extends ParentPanel implements MouseListener{
         super.paint(g);
         g.drawRect(0, 0, 500, 500);
     }//end of paint
+
+    public Player[] getPlayers(){
+        return game.getPlayers();
+    }
 
     public void mousePressed(MouseEvent e){
 
@@ -45,7 +51,8 @@ public class GamePanel extends ParentPanel implements MouseListener{
     public void endGame(){
         this.getFrame().endGame(game.getPlayers());
     }
-    //end of gameOver
 
+    
+    //end of gameOver
 
 }//end of class

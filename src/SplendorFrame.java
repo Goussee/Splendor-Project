@@ -1,6 +1,11 @@
+import java.awt.CardLayout;
 import javax.swing.*;
 public class SplendorFrame extends JFrame{
-    private ParentPanel panel;
+    private CardLayout cl;
+    private JPanel mainP;
+    private StartPanel startP;
+    private GamePanel gameP;
+    private EndPanel endP;
 
     public SplendorFrame(){
         super("Splendor Game");
@@ -8,22 +13,34 @@ public class SplendorFrame extends JFrame{
 		setSize(1920,1080);
 		setLocationRelativeTo(null);
 		setResizable(false);
-        //setExtendedState(JFrame.MAXIMIZED_BOTH); 
-        //setUndecorated(true);
-        //Player[] testing = {new Player("Player 5"), new Player("player 9")};
-
-        panel = new StartPanel();
-        panel.setFrame(this);
-        add(panel);
+        cl = new CardLayout();
+        mainP = new JPanel();
+        mainP.setLayout(cl);
+        startP = new StartPanel();
+        startP.setFrame(this);
+        mainP.add("START_PANEL", startP);
+        startScreen();
+        add(mainP);
         setVisible(true);
     }//end of constructor
 
-    public void endGame(Player[] ps){
-        panel = new EndPanel(ps);
+    public void startScreen(){
+        cl.show(mainP, "START_PANEL");
+    }
+
+    public void endScreen(Player[] ps){
+        endP = new EndPanel(gameP.getPlayers());
+        endP.setFrame(this);
+        mainP.add("END_PANEL", endP);
+        cl.show(mainP, "END_PANEL");
     }//end of changePanel
 
-    public void startGame(int numPlayers) throws Exception{
-        panel = new GamePanel(numPlayers);
+    public void gameScreen(int numPlayers) throws Exception{
+        System.out.println("gamescreem");
+        gameP = new GamePanel(startP.getNumPlayers());
+        gameP.setFrame(this);
+        mainP.add("GAME_PANEL", gameP);
+        cl.show(mainP, "GAME_PANEL");
     }
 
 }//end of class

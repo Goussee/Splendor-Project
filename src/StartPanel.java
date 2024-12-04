@@ -2,12 +2,11 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.imageio.ImageIO;
-import javax.swing.*;
 public class StartPanel extends ParentPanel implements MouseListener{
-    private JFrame frame;
     private boolean showRules;
     private boolean showNumPlayers;
     private Image startImg, rulesImg, chooseImg;
+    private int numPlayers = 0;
 
     //Start panel constructor
     public StartPanel(){
@@ -49,6 +48,10 @@ public class StartPanel extends ParentPanel implements MouseListener{
         }
 
     }
+
+    public int getNumPlayers(){
+        return numPlayers;
+    }
     
     public void mousePressed(MouseEvent e) 
     {
@@ -65,7 +68,6 @@ public class StartPanel extends ParentPanel implements MouseListener{
             showRules = false;
         } else if(showNumPlayers){
             if(getHeight()/2+45<y&&y<getHeight()/2+165){
-                int numPlayers = 0;
                 if(getWidth()/2-350<x&&x<getWidth()/2-250)
                     numPlayers = 2;
                 else if(getWidth()/2-50<x&&x<getWidth()/2+50)
@@ -73,11 +75,11 @@ public class StartPanel extends ParentPanel implements MouseListener{
                 else if(getWidth()/2+250<x&&x<getWidth()/2+350)
                     numPlayers = 4;
                 if(numPlayers != 0){
+                    System.out.println("newm game with " + numPlayers);
                     try {
-                        System.out.println("num players: " + numPlayers);
-                        super.getFrame().startGame(numPlayers);
-                    } catch (Exception e1) {
-                        e1.printStackTrace();
+                        super.getFrame().gameScreen(numPlayers);
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
                     }
                 }
             }
