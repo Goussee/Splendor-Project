@@ -9,20 +9,21 @@ import javax.swing.*;
 public class GamePanel extends ParentPanel implements MouseListener{
 
     private JFrame frame;
-    private Image gameBG = ImageLoader.get("/Assets/GamePanelHelp.PNG");;
+    private Image gameBG;
     private Splendor game;
 
     public GamePanel(int numPlayers) throws Exception{
         repaint();
         game = new Splendor(numPlayers);
         addMouseListener(this);
-
+        gameBG = ImageLoader.get("/Assets/SplendorMockUIBG.png").getScaledInstance(1920, 1080, Image.SCALE_SMOOTH);
         System.out.println("hi");
     }
 
     public void paint(Graphics g){
         super.paint(g);
-        g.drawImage(gameBG, 0, 0, getWidth(), getHeight(), null);
+        g.drawImage(gameBG, 0, 0, null);
+        g.drawRect(0, 0, 500, 500);
     }//end of paint
 
     public void mousePressed(MouseEvent e){
@@ -51,6 +52,5 @@ public class GamePanel extends ParentPanel implements MouseListener{
         this.getFrame().endGame(game.getPlayers());
     }
     //end of gameOver
-
 
 }//end of class
