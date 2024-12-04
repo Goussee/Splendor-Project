@@ -129,6 +129,7 @@ public class Splendor{
 
     public void endGame(){
         winner = getWinner();
+        gameState = "endGame";
     }//end of endGame
 
     public void fillCard(){
