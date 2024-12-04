@@ -2,24 +2,27 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
+
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 public class GamePanel extends ParentPanel implements MouseListener{
 
     private JFrame frame;
-    private BufferedImage gameBG;
+    private Image gameBG = ImageLoader.get("/Assets/GamePanelHelp.PNG");;
     private Splendor game;
 
     public GamePanel(int numPlayers) throws Exception{
         repaint();
         game = new Splendor(numPlayers);
         addMouseListener(this);
+
         System.out.println("hi");
     }
 
     public void paint(Graphics g){
         super.paint(g);
-        g.drawRect(0, 0, 500, 500);
+        g.drawImage(gameBG, 0, 0, getWidth(), getHeight(), null);
     }//end of paint
 
     public void mousePressed(MouseEvent e){

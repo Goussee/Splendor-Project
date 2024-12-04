@@ -23,6 +23,7 @@ public class SplendorFrame extends JFrame{
     }//end of changePanel
 
     public void startGame(int numPlayers) throws Exception{
+        System.out.println("Jumper");
         panel = new GamePanel(numPlayers);
     }
 
