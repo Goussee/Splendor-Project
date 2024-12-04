@@ -144,9 +144,7 @@ public class Player implements Comparable<Player>{
     @Override
     public int compareTo(Player o) {
         int diff = this.getPoints() - o.getPoints();
-        if(diff != 0)
-            return diff;
-        return this.getCardSum() - o.getCardSum();
+        return diff == 0 ? this.getCardSum() - o.getCardSum() : diff;
     }
 
     public String toString(){

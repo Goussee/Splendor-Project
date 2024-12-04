@@ -18,9 +18,10 @@ public class SplendorFrame extends JFrame{
         setVisible(true);
     }//end of constructor
 
-    public void endGame(String s){
-        panel = new EndPanel();
+    public void endGame(Player[] ps){
+        panel = new EndPanel(ps);
     }//end of changePanel
+
     public void startGame(int numPlayers) throws Exception{
         panel = new GamePanel(numPlayers);
     }
