@@ -87,11 +87,13 @@ public class Splendor{
         return gems.get(gem) >= 4;
     }//end of canDraw2
 
-    public void draw(String gem){
+    public void draw(String gem){ //probably shouldn't use this
         //draws a single gem, gives it to the player, and removes it from 
         //the community gems
         players[currentPlayer].addGems(gem, 1);
         gems.put(gem, gems.get(gem) - 1);
+
+        gameState = "draw";
     }//end of draw
 
     public void draw2(String gem){
@@ -99,6 +101,8 @@ public class Splendor{
         //removes them for the community gems
         players[currentPlayer].addGems(gem, 2);
         gems.put(gem, gems.get(gem) - 2);
+
+        gameState = "draw";
     }//end of draw2
     
     public void draw3(String gem1, String gem2, String gem3){
@@ -111,6 +115,8 @@ public class Splendor{
         gems.put(gem1, gems.get(gem1) - 1);
         gems.put(gem2, gems.get(gem2) - 1);
         gems.put(gem3, gems.get(gem3) - 1);
+
+        gameState = "draw";
     }//end of draw3
     
     public void endTurn(){
@@ -135,6 +141,7 @@ public class Splendor{
 
     public void endGame(){
         winner = getWinner();
+        gameState = "endGame";
     }//end of endGame
 
     public void fillCard(){

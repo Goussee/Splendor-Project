@@ -2,10 +2,14 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
+
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 public class GamePanel extends ParentPanel implements MouseListener{
-    private BufferedImage gameBG;
+
+    private JFrame frame;
+    private Image gameBG;
     private Splendor game;
 
     public GamePanel(int numPlayers){
@@ -16,11 +20,13 @@ public class GamePanel extends ParentPanel implements MouseListener{
             e.printStackTrace();
         }
         addMouseListener(this);
+        gameBG = ImageLoader.get("/Assets/SplendorMockUIBG.png").getScaledInstance(1920, 1080, Image.SCALE_SMOOTH);
         System.out.println("hi");
     }
 
     public void paint(Graphics g){
         super.paint(g);
+        g.drawImage(gameBG, 0, 0, null);
         g.drawRect(0, 0, 500, 500);
     }//end of paint
 
@@ -29,6 +35,8 @@ public class GamePanel extends ParentPanel implements MouseListener{
     }
 
     public void mousePressed(MouseEvent e){
+
+ 
 
     }//end of mousePressed
 
