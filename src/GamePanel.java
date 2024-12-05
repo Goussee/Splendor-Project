@@ -23,7 +23,6 @@ public class GamePanel extends ParentPanel implements MouseListener{
     public void paint(Graphics g){
         super.paint(g);
         g.drawImage(gameBG, 0, 0, null);
-        g.drawRect(0, 0, 500, 500);
     }//end of paint
 
     public Player[] getPlayers(){
