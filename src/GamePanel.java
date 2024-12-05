@@ -25,7 +25,7 @@ public class GamePanel extends ParentPanel implements MouseListener{
         super.paint(g);
         currentPlayer = game.getCurrent();
         g.drawImage(gameBG, 0, 0, null);
-        System.out.println("currentPlayer = "+game.getCurrentNum());
+        System.out.println("currentPlayer = "+ game.getCurrentNum());
     }//end of paint
 
     public Player[] getPlayers(){
@@ -33,9 +33,7 @@ public class GamePanel extends ParentPanel implements MouseListener{
     }
 
     public void mousePressed(MouseEvent e){
-        int x = e.getX(), y = e.getY();
-
-        game.endTurn();
+        
 
     }//end of mousePressed
 
@@ -52,7 +50,10 @@ public class GamePanel extends ParentPanel implements MouseListener{
     }//end of mouseExited
 
     public void mouseClicked(MouseEvent e){
-        
+        int x = e.getX(), y = e.getY();
+
+        game.endTurn();
+        repaint();
     }//mouseClicked
 
     public void endGame(){
