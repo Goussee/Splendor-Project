@@ -63,6 +63,7 @@ public class Splendor{
             
         }catch(Exception e){
             System.out.println(e);
+            System.out.println("cardData not working");
         }
         System.out.println("tried cardData");
         Collections.shuffle(deck1);
@@ -74,7 +75,7 @@ public class Splendor{
                 patrons[i] = new Patron(scan.next());
             scan.close();
         }catch(Exception e){
-            System.out.println("patronData not working...");
+            System.out.println("patronData not working");
         }
         System.out.println("tried patronData");
     }//end of constructor
