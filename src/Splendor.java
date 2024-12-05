@@ -6,7 +6,7 @@ import java.util.Stack;
 public class Splendor{
     private HashMap<String, Integer> gems;
     private Player[] players;
-    private int currentPlayer, lastPlayer;
+    private int currentPlayer;
     private Stack<Card> deck1, deck2, deck3;
     private Card[] seen1, seen2, seen3;
     private Patron[] patrons;
@@ -26,13 +26,13 @@ public class Splendor{
         int numTokens = (numPlayers == 4) ? 7 : (numPlayers == 3) ? 5 : 4;
         winner = null;
         players = new Player[numPlayers];
+        gameState = "turnStart";
 
         for(int i = 1; i <= players.length; i++){
             players[i-1] = new Player("Player " + i);
         }
 
         currentPlayer = 0;
-        lastPlayer = 0;
         patrons = new Patron[numPlayers + 1];
         gems.put("white", numTokens);
         gems.put("red", numTokens);
@@ -43,26 +43,27 @@ public class Splendor{
         Scanner scan = new Scanner(System.in);
         try{
             scan = new Scanner(getClass().getResourceAsStream("cardData.txt"));
-            
-            while(scan.hasNext()){
-                Card c = new Card(scan.next());
-                if(c.getLevel() == 1)
-                    deck1.add(c);
-                else if(c.getLevel() == 2)
-                    deck2.add(c);
-                else if(c.getLevel() == 3)
-                    deck3.add(c);
-            }
-            for(int i = 0; i < 4; i++){
-                seen1[i] = deck1.pop();
-                seen2[i] = deck2.pop();
-                seen3[i] = deck3.pop();
-            }
 
-            scan.close();
+        while(scan.hasNext()){
+            Card c = new Card(scan.next());
+            if(c.getLevel() == 1)
+                deck1.add(c);
+            else if(c.getLevel() == 2)
+                deck2.add(c);
+            else if(c.getLevel() == 3)
+                deck3.add(c);
+        }
+        for(int i = 0; i < 4; i++){
+            seen1[i] = deck1.pop();
+            seen2[i] = deck2.pop();
+            seen3[i] = deck3.pop();
+        }
+
+        scan.close();
             
         }catch(Exception e){
             System.out.println(e);
+            System.out.println("cardData not working");
         }
         System.out.println("tried cardData");
         Collections.shuffle(deck1);
@@ -70,11 +71,11 @@ public class Splendor{
         Collections.shuffle(deck3);
         try{
             scan = new Scanner(getClass().getResourceAsStream("patronData.txt"));
-            for(int i = 0; i < patrons.length; i++)
-                patrons[i] = new Patron(scan.next());
-            scan.close();
+        for(int i = 0; i < patrons.length; i++)
+            patrons[i] = new Patron(scan.next());
+        scan.close();
         }catch(Exception e){
-            System.out.println("patronData not working...");
+            System.out.println("patronData not working");
         }
         System.out.println("tried patronData");
     }//end of constructor
@@ -87,14 +88,14 @@ public class Splendor{
         return gems.get(gem) >= 4;
     }//end of canDraw2
 
-    public void draw(String gem){ //probably shouldn't use this
+    /*public void draw(String gem){ //probably shouldn't use this
         //draws a single gem, gives it to the player, and removes it from 
         //the community gems
         players[currentPlayer].addGems(gem, 1);
         gems.put(gem, gems.get(gem) - 1);
 
         gameState = "draw";
-    }//end of draw
+    }//end of draw*/
 
     public void draw2(String gem){
         //draws 2 gems of the same type, gives them to the player, and 
@@ -102,7 +103,7 @@ public class Splendor{
         players[currentPlayer].addGems(gem, 2);
         gems.put(gem, gems.get(gem) - 2);
 
-        gameState = "draw";
+        gameState = "endTurn";
     }//end of draw2
     
     public void draw3(String gem1, String gem2, String gem3){
@@ -116,7 +117,7 @@ public class Splendor{
         gems.put(gem2, gems.get(gem2) - 1);
         gems.put(gem3, gems.get(gem3) - 1);
 
-        gameState = "draw";
+        gameState = "endTurn";
     }//end of draw3
     
     public void endTurn(){
@@ -124,7 +125,7 @@ public class Splendor{
             gameState = "removeTokens";
         } if(isEnding()) {
             int nextPlayer = currentPlayer == players.length - 1 ? 0 : currentPlayer + 1;
-            if(nextPlayer == lastPlayer){
+            if(nextPlayer == 0){
                 endGame();
                 return;
             }
@@ -141,7 +142,6 @@ public class Splendor{
 
     public void endGame(){
         winner = getWinner();
-        gameState = "endGame";
     }//end of endGame
 
     public void fillCard(){
@@ -182,6 +182,7 @@ public class Splendor{
                     seen3[index-1] = null;
                     break;
             }
+        gameState = "endTurn";
         return taken;
     }
 
@@ -197,4 +198,23 @@ public class Splendor{
         } else 
             return winner;
     }//end of getWinner
+
+    public String getState()
+    {
+        return gameState;
+    }
+    public void setState(String x)
+    {
+        gameState = x;
+    }
+
+    public Player getCurrent()
+    {
+        return players[currentPlayer];
+    }
+
+    public int getCurrentNum()
+    {
+        return currentPlayer;
+    }
 }

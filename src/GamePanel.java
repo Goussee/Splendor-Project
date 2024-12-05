@@ -1,9 +1,6 @@
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.image.BufferedImage;
-
-import javax.imageio.ImageIO;
 import javax.swing.*;
 
 public class GamePanel extends ParentPanel implements MouseListener{
@@ -11,6 +8,7 @@ public class GamePanel extends ParentPanel implements MouseListener{
     private JFrame frame;
     private Image gameBG;
     private Splendor game;
+    private Player currentPlayer;
 
     public GamePanel(int numPlayers){
         repaint();
@@ -20,26 +18,14 @@ public class GamePanel extends ParentPanel implements MouseListener{
             e.printStackTrace();
         }
         addMouseListener(this);
-
-        // switch(numPlayers){
-        //     case 2 : 
-        //         gameBG = ImageLoader.get("/Assets/Splendor2PlayerBG.png").getScaledInstance(1920, 1080, Image.SCALE_SMOOTH);
-        //         break;
-        //     case 3: 
-        //         gameBG = ImageLoader.get("/Assets/Splendor3PlayerBG.png").getScaledInstance(1920, 1080, Image.SCALE_SMOOTH);
-        //         break;
-        //     case 4: 
-        //         gameBG = ImageLoader.get("/Assets/Splendor4PlayerBG.png").getScaledInstance(1920, 1080, Image.SCALE_SMOOTH);
-        //         break;
-        // }
-
         gameBG = ImageLoader.get("/Assets/GamePanelHelp.png").getScaledInstance(1920, 1080, Image.SCALE_SMOOTH);
-        System.out.println("hi");
     }
 
     public void paint(Graphics g){
         super.paint(g);
+        currentPlayer = game.getCurrent();
         g.drawImage(gameBG, 0, 0, null);
+        System.out.println("currentPlayer = "+game.getCurrentNum());
     }//end of paint
 
     public Player[] getPlayers(){
@@ -47,8 +33,9 @@ public class GamePanel extends ParentPanel implements MouseListener{
     }
 
     public void mousePressed(MouseEvent e){
+        int x = e.getX(), y = e.getY();
 
- 
+        game.endTurn();
 
     }//end of mousePressed
 
@@ -69,7 +56,7 @@ public class GamePanel extends ParentPanel implements MouseListener{
     }//mouseClicked
 
     public void endGame(){
-        //this.getFrame().endGame(game.getPlayers());
+        this.getFrame().endScreen(game.getPlayers());
     }
 
     
