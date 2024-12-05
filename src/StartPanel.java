@@ -40,7 +40,6 @@ public class StartPanel extends ParentPanel implements MouseListener{
         } else if(showNumPlayers){
             g.drawImage(chooseImg, 0, 0, getWidth(), getHeight(), null);
         }
-
     }
 
     public int getNumPlayers(){

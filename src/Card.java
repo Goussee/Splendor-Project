@@ -1,7 +1,5 @@
 import java.awt.Image;
-import java.io.File;
 import java.util.HashMap;
-import javax.imageio.ImageIO;
 
 public class Card{
     private final HashMap<String, Integer> cost; //order is w, r, g, b, k
@@ -71,7 +69,7 @@ public class Card{
     }
     public Image getImage(){
         try {
-            return ImageIO.read(new File("/Assets/" + code));
+            return ImageLoader.get("/Assets/Cards/" + code + ".png");
         } catch (Exception e) {
             return null;
         }

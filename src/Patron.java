@@ -1,3 +1,4 @@
+import java.awt.Image;
 import java.util.HashMap;
 
 public class Patron{
@@ -40,5 +41,13 @@ public class Patron{
     public String getCode(){
         return code;
     }//end of getCode
+
+    public Image getImage(){
+        try {
+            return ImageLoader.get("/Assets/Patrons/" + code + ".png");
+        } catch (Exception e) {
+            return null;
+        }
+    }
 }//end of class
 
