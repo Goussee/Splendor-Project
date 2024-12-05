@@ -39,8 +39,9 @@ public class GamePanel extends ParentPanel implements MouseListener{
     }
 
     public void mousePressed(MouseEvent e){
+        int x = e.getX(), y = e.getY();
 
- 
+        game.endTurn();
 
     }//end of mousePressed
 
