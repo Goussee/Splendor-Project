@@ -43,7 +43,6 @@ public class Splendor{
         Scanner scan = new Scanner(System.in);
         try{
             scan = new Scanner(getClass().getResourceAsStream("cardData.txt"));
-            
             while(scan.hasNext()){
                 Card c = new Card(scan.next());
                 if(c.getLevel() == 1)
@@ -53,31 +52,28 @@ public class Splendor{
                 else if(c.getLevel() == 3)
                     deck3.add(c);
             }
-            for(int i = 0; i < 4; i++){
-                seen1[i] = deck1.pop();
-                seen2[i] = deck2.pop();
-                seen3[i] = deck3.pop();
-            }
-
             scan.close();
-            
         }catch(Exception e){
             System.out.println(e);
-            System.out.println("cardData not working");
         }
-        System.out.println("tried cardData");
         Collections.shuffle(deck1);
         Collections.shuffle(deck2);
         Collections.shuffle(deck3);
+
+        for(int i = 0; i < 4; i++){
+            seen1[i] = deck1.pop();
+            seen2[i] = deck2.pop();
+            seen3[i] = deck3.pop();
+        }
+
         try{
             scan = new Scanner(getClass().getResourceAsStream("patronData.txt"));
             for(int i = 0; i < patrons.length; i++)
                 patrons[i] = new Patron(scan.next());
             scan.close();
         }catch(Exception e){
-            System.out.println("patronData not working");
+            System.out.println(e);
         }
-        System.out.println("tried patronData");
     }//end of constructor
 
     boolean canDraw3(String gem1, String gem2, String gem3){
@@ -87,6 +83,10 @@ public class Splendor{
     boolean canDraw2(String gem){
         return gems.get(gem) >= 4;
     }//end of canDraw2
+
+    public Card[] getTierCards(int x){
+        return x == 1 ? seen1 : x == 2 ? seen2 : x == 3 ? seen3 : null;
+    }
 
     public void draw(String gem){ //probably shouldn't use this
         //draws a single gem, gives it to the player, and removes it from 
