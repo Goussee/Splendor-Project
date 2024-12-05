@@ -69,7 +69,7 @@ public class Card{
     }
     public Image getImage(){
         try {
-            return ImageLoader.get("/Assets/Cards/" + code + ".png").getScaledInstance(120, 166, Image.SCALE_SMOOTH);
+            return ImageLoader.get("/Assets/Cards/" + code + ".png");
         } catch (Exception e) {
             return null;
         }

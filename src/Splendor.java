@@ -84,6 +84,10 @@ public class Splendor{
         }
     }//end of constructor
 
+    Card[] getTierCards(int x){
+        return x == 1 ? seen1 : x == 2 ? seen2 : x == 3 ? seen3 : null;
+    }
+
     boolean canDraw3(String gem1, String gem2, String gem3){
         return gems.get(gem1) > 0 && gems.get(gem2) > 0 && gems.get(gem3) > 0;
     }//end of canDraw3
@@ -123,6 +127,10 @@ public class Splendor{
 
         gameState = "endTurn";
     }//end of draw3
+
+    public Patron[] getPatrons(){
+        return patrons;
+    }
     
     public void endTurn(){
         while(players[currentPlayer].getGemSum() > 10){

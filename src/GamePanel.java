@@ -27,10 +27,15 @@ public class GamePanel extends ParentPanel implements MouseListener{
         g.drawImage(gameBG, 0, 0, null);
         for(int tier = 1; tier < 4; tier++){
             Card[] cards = game.getTierCards(tier);
-            for(int i = 0; i < cards.length; i++){
+            for(int i = 0; i < cards.length; i++)
                 g.drawImage(cards[i].getImage(), bigCardsX[i], bigCardsY[tier], 120, 166, null);
-                g.fillRect(bigCardsX[i]+56, bigCardsY[tier]+77, 10, 10);
-            }
+        }
+
+        Patron[] patrons = game.getPatrons();
+        int xpos = 618;
+        for(int i = 0; i < patrons.length; i++){
+            g.drawImage(patrons[i].getImage(), xpos, 922, 124, 124, null);
+            xpos += 144;
         }
     }//end of paint
 
