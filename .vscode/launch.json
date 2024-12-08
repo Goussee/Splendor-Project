@@ -9,6 +9,13 @@
             "name": "SplendorRunner",
             "request": "launch",
             "mainClass": "SplendorRunner",
+            "projectName": "Splendor-Project_f9550cf4"
+        },
+        {
+            "type": "java",
+            "name": "SplendorRunner",
+            "request": "launch",
+            "mainClass": "SplendorRunner",
             "projectName": "Splendor-Project_3278f8c4"
         },
         {

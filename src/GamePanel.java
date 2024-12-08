@@ -18,7 +18,23 @@ public class GamePanel extends ParentPanel implements MouseListener{
             e.printStackTrace();
         }
         addMouseListener(this);
-        gameBG = ImageLoader.get("/Assets/GamePanelHelp.png").getScaledInstance(1920, 1080, Image.SCALE_SMOOTH);
+
+        switch (numPlayers) {
+            case 2:
+            gameBG = ImageLoader.get("/Assets/Splendor2PlayersBG.png").getScaledInstance(1920, 1080, Image.SCALE_SMOOTH);
+                break;
+            case 3:
+            gameBG = ImageLoader.get("/Assets/Splendor3PlayersBG.png").getScaledInstance(1920, 1080, Image.SCALE_SMOOTH);
+                break;
+            case 4:
+            gameBG = ImageLoader.get("/Assets/Splendor4PlayersBG.png").getScaledInstance(1920, 1080, Image.SCALE_SMOOTH);
+                break;
+            default:
+                gameBG = ImageLoader.get("/Assets/GamePanelHelp.png").getScaledInstance(1920, 1080, Image.SCALE_SMOOTH);
+                break;
+        }
+        //to test use this vvv
+        //gameBG = ImageLoader.get("/Assets/GamePanelHelp.png").getScaledInstance(1920, 1080, Image.SCALE_SMOOTH);
     }
 
     public void paint(Graphics g){
