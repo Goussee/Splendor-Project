@@ -96,14 +96,14 @@ public class Splendor{
         return gems.get(gem) >= 4;
     }//end of canDraw2
 
-    /*public void draw(String gem){ //probably shouldn't use this
+    public void draw(String gem){ //probably shouldn't use this
         //draws a single gem, gives it to the player, and removes it from 
         //the community gems
         players[currentPlayer].addGems(gem, 1);
         gems.put(gem, gems.get(gem) - 1);
 
         gameState = "draw";
-    }//end of draw*/
+    }//end of draw
 
     public void draw2(String gem){
         //draws 2 gems of the same type, gives them to the player, and 
