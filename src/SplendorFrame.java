@@ -1,7 +1,4 @@
 import java.awt.CardLayout;
-import java.awt.Dimension;
-import java.awt.Toolkit;
-
 import javax.swing.*;
 public class SplendorFrame extends JFrame{
     private CardLayout cl;
@@ -14,13 +11,6 @@ public class SplendorFrame extends JFrame{
         super("Splendor Game");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        // Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        // double width = screenSize.getWidth();
-        // double height = screenSize.getHeight();
-        
-        //1920, 1080
-		//setSize((int)width - 10,(int)height - 50);
-        
         setSize(1920, 1080);
 		setLocationRelativeTo(null);
 		setResizable(false);
