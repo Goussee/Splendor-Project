@@ -88,6 +88,10 @@ public class Splendor{
         return x == 1 ? seen1 : x == 2 ? seen2 : x == 3 ? seen3 : null;
     }
 
+    boolean canDraw1(String gem){
+        return gems.get(gem) >= 1;
+    }//end of canDraw2
+
     boolean canDraw3(String gem1, String gem2, String gem3){
         return gems.get(gem1) > 0 && gems.get(gem2) > 0 && gems.get(gem3) > 0;
     }//end of canDraw3

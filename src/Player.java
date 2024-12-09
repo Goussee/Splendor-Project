@@ -100,7 +100,6 @@ public class Player implements Comparable<Player>{
         return true;
     }
 
-    //not yet implemented vvvv
     public HashMap<String, Integer> buy(Card c){
         HashMap<String, Integer> cost = c.getCost(); 
         int coinsNeeded = 0;
@@ -125,6 +124,27 @@ public class Player implements Comparable<Player>{
 
     public String getName(){
         return name;
+    }
+
+    public boolean addReserved(Card c){
+        for(int i = 0; i < reservedCards.length; i++){
+            if(reservedCards[i] == null){
+                reservedCards[i] = c;
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean canReserve(){
+        boolean isAvailable = false;
+        for(int i = 0; i < reservedCards.length; i++){
+            if(reservedCards[i] == null){
+                isAvailable = true;
+                break;
+            }
+        }
+        return isAvailable;
     }
 
     //getters vvv

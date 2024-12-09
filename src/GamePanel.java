@@ -86,27 +86,40 @@ public class GamePanel extends ParentPanel implements MouseListener{
         //width of buttons: 174, height of buttons : 57
 
         if(x >= 559 && x <= 731 && y >= 22 &&  y <= 79){ //draw a wild card
-            game.draw("gold");
-            //needs to get the card of this position
-            //game.getCard(y, x);
-
-            System.out.println("drawing a wildcard");
-        } else if(x >= 768 && x <= 942 && y >= 22 &&  y <= 79){//draw 2 gems
+            if(game.canDraw1("gold") && game.getCurrent().canReserve()){
+                game.setState("getWildToken");
+                System.out.println("drawing a wildcard");
+            }
             
-            //get the gems needed
-
+        } else if(x >= 768 && x <= 942 && y >= 22 &&  y <= 79){//draw 2 gems
+            game.setState("get2gems");
             System.out.println("drawing 2 of the same gem");
 
         }else if(x >= 978 && x <= 1152 && y >= 22 &&  y <= 79){//draw 3 gems
-            //get the gems needed
-
+            game.setState("get3gems");
             System.out.println("drawing 3 different gems");
 
         }else if(x >= 1188 && x <= 1362 && y >= 22 &&  y <= 79){//buy card
+            game.setState("buyCard");
             System.out.println("buying a card");
-
         }
         
+        if(game.getState().equals("getWildToken")){
+            game.draw("gold");
+            game.setState("getWildCard");
+        }
+
+        if(game.getState().equals("getWildCard")){
+            // Card wantedCard;
+            // int lvl, ind;
+            // //gets the card needed
+
+
+            // wantedCard = game.getCard(lvl,  ind);
+            // game.getCurrent().addReserved(wantedCard);
+        }
+
+        //this is only for testing vvv
         game.setState("endTurn");
         
         if(game.getState().equals("endTurn")) game.endTurn();
