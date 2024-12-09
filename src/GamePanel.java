@@ -59,21 +59,20 @@ public class GamePanel extends ParentPanel implements MouseListener{
             g.drawImage(patrons[i].getImage(), xpos, 922, 124, 124, null);
             xpos += 144;
         }
-
         //this is testing --> g.drawRect(559, 22, 174, 57);
         g.setColor(new Color(255, 255, 170));
         switch(game.getCurrentNum()){
             case 0:
-                g.drawRect(118, 16, 319, 83);
+                g.drawRoundRect(118, 16, 319, 83, 20, 20);
                 break;
             case 1:
-                g.drawRect(1468, 16, 319, 83);
+                g.drawRoundRect(1468, 16, 319, 83, 20, 20);
                 break;
             case 2:
-                g.drawRect(118, 525, 319, 83);
+                g.drawRoundRect(118, 525, 319, 83, 20, 20);
                 break;
             case 3:
-                g.drawRect(1468, 525, 319, 83);
+                g.drawRoundRect(1468, 525, 319, 83, 20, 20);
                 break;
         }
     }//end of paint
