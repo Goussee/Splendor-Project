@@ -174,9 +174,7 @@ public class Player implements Comparable<Player>{
             output += cards.get(s) + "\n";
         }
         output += patrons + "\n";
-        if(this.hasReservedCards()){
-            output += reservedCards[0] + "\n" + reservedCards[1] + "\n" + reservedCards[2] + "\n";
-        }
+        output += reservedCards;
         output += "\nPoints: " + points + "\n";
         return output;
     }

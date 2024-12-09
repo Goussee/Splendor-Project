@@ -1,6 +1,7 @@
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Objects;
 import java.util.Scanner;
 import java.util.Stack;
 public class Splendor{
@@ -26,7 +27,7 @@ public class Splendor{
         int numTokens = (numPlayers == 4) ? 7 : (numPlayers == 3) ? 5 : 4;
         winner = null;
         players = new Player[numPlayers];
-        gameState = "turnStart";
+        gameState = "endTurn";
 
         for(int i = 1; i <= players.length; i++){
             players[i-1] = new Player("Player " + i);
@@ -115,7 +116,7 @@ public class Splendor{
         players[currentPlayer].addGems(gem, 2);
         gems.put(gem, gems.get(gem) - 2);
 
-        gameState = "endTurn";
+        endTurn();
     }//end of draw2
     
     public void draw3(String gem1, String gem2, String gem3){
@@ -129,7 +130,7 @@ public class Splendor{
         gems.put(gem2, gems.get(gem2) - 1);
         gems.put(gem3, gems.get(gem3) - 1);
 
-        gameState = "endTurn";
+        endTurn();
     }//end of draw3
 
     public Patron[] getPatrons(){
@@ -146,10 +147,10 @@ public class Splendor{
                 return;
             }
         } else {
+            gameState = "endTurn";
             isEnding = players[currentPlayer].getPoints() >= 15;
         }
         currentPlayer = currentPlayer == players.length - 1 ? 0 : currentPlayer + 1;
-        
     }//end of endTurn
 
     public boolean isEnding(){
@@ -162,14 +163,16 @@ public class Splendor{
 
     public void fillCard(){
         for(int i = 0; i < 4; i++){
-            if(seen1[i] == null){
+            if(Objects.isNull(seen1[i])){
                 seen1[i] = deck1.pop();
                 return;
-            } else if(seen2[i] == null){
-                seen2[i] = deck1.pop();
+            }
+            if(Objects.isNull(seen2[i])){
+                seen2[i] = deck2.pop();
                 return;
-            } else if(seen3[i] == null){
-                seen3[i] = deck1.pop();
+            }
+            if(Objects.isNull(seen3[i])){
+                seen3[i] = deck3.pop();
                 return;
             }
         }
@@ -207,13 +210,23 @@ public class Splendor{
     }
 
     public void reserveCard(int tier, int pos){
-        if(tier==1){
-            players[currentPlayer].addReserved(seen1[pos]) ;
-        }else if(tier==2){
-            players[currentPlayer].addReserved(seen2[pos]) ;
-        }else if(tier==3){
-            players[currentPlayer].addReserved(seen3[pos]) ;
+        try {
+            players[currentPlayer].addReserved(takeCard(tier,pos));
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+        endTurn();
+    }
+
+    public Card takeCard(int tier, int pos){
+        Card temp = getCard(tier, pos);
+        try {
+            getTierCards(tier)[pos] = null;
+            fillCard();
+        } catch (Exception e) {
+
+        }
+        return temp;
     }
 
     public Player getWinner(){
