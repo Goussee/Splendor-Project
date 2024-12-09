@@ -34,7 +34,7 @@ public class GamePanel extends ParentPanel implements MouseListener{
                 break;
         }
         //to test use this vvv
-        //gameBG = ImageLoader.get("/Assets/GamePanelHelp.png").getScaledInstance(1920, 1080, Image.SCALE_SMOOTH);
+        gameBG = ImageLoader.get("/Assets/GamePanelHelp.png").getScaledInstance(1920, 1080, Image.SCALE_SMOOTH);
     }
 
     public void paint(Graphics g){
