@@ -1,8 +1,6 @@
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.Objects;
-
 import javax.swing.*;
 
 public class GamePanel extends ParentPanel implements MouseListener{
@@ -36,7 +34,7 @@ public class GamePanel extends ParentPanel implements MouseListener{
                 break;
         }
         //to test use this vvv
-        gameBG = ImageLoader.get("/Assets/GamePanelHelp.png").getScaledInstance(1920, 1080, Image.SCALE_SMOOTH);
+        //gameBG = ImageLoader.get("/Assets/GamePanelHelp.png").getScaledInstance(1920, 1080, Image.SCALE_SMOOTH);
 
     }
 
@@ -44,10 +42,15 @@ public class GamePanel extends ParentPanel implements MouseListener{
         super.paint(g);
         g.setColor(Color.RED);
         g.drawImage(gameBG, 0, 0, null);
+        game.fillCard();
         for(int tier = 1; tier < 4; tier++){
             Card[] cards = game.getTierCards(tier);
             for(int i = 0; i < cards.length; i++)
-                g.drawImage(cards[i].getImage(), bigCardsX[i], bigCardsY[tier], 120, 166, null);
+                try{
+                    g.drawImage(cards[i].getImage(), bigCardsX[i], bigCardsY[tier], 120, 166, null);
+                } catch(Exception e){
+                    System.out.println(e);
+                }
         }
 
         Patron[] patrons = game.getPatrons();
@@ -56,8 +59,65 @@ public class GamePanel extends ParentPanel implements MouseListener{
             g.drawImage(patrons[i].getImage(), xpos, 922, 124, 124, null);
             xpos += 144;
         }
+        //gem numbers in the middle (community gems)
+        g.setColor(Color.BLACK);
+        g.setFont(new Font("Consolas", 0, 50));
+        g.drawString("" + game.getGems().get("red"), 645, 200);
+        g.drawString("" + game.getGems().get("green"), 765, 200);
+        g.drawString("" + game.getGems().get("blue"), 885, 200);
+        g.drawString("" + game.getGems().get("white"), 1005, 200);
+        g.drawString("" + game.getGems().get("black"), 1125, 200);
+        g.drawString("" + game.getGems().get("gold"), 1245, 200);
+        //getting the number of player gems o load.
 
+        //player 1 gems
+        g.drawString("" + game.getPlayers()[0].getGems().get("red"), 40, 165);
+        g.drawString("" + game.getPlayers()[0].getGems().get("green"), 135, 165);
+        g.drawString("" + game.getPlayers()[0].getGems().get("blue"), 225, 165);
+        g.drawString("" + game.getPlayers()[0].getGems().get("white"), 315, 165);
+        g.drawString("" + game.getPlayers()[0].getGems().get("black"), 410, 165);
+        g.drawString("" + game.getPlayers()[0].getGems().get("gold"), 500, 165);
+        //player 2 gems
+        g.drawString("" + game.getPlayers()[1].getGems().get("red"), 1390, 165);
+        g.drawString("" + game.getPlayers()[1].getGems().get("green"), 1485, 165);
+        g.drawString("" + game.getPlayers()[1].getGems().get("blue"), 1575, 165);
+        g.drawString("" + game.getPlayers()[1].getGems().get("white"), 1670, 165);
+        g.drawString("" + game.getPlayers()[1].getGems().get("black"), 1760, 165);
+        g.drawString("" + game.getPlayers()[1].getGems().get("gold"), 1850, 165);
+        //player 3 gems
+        if(game.getPlayers().length > 2){
+            g.drawString("" + game.getPlayers()[2].getGems().get("red"), 40, 670);
+            g.drawString("" + game.getPlayers()[2].getGems().get("green"), 135, 670);
+            g.drawString("" + game.getPlayers()[2].getGems().get("blue"), 225, 670);
+            g.drawString("" + game.getPlayers()[2].getGems().get("white"), 315, 670);
+            g.drawString("" + game.getPlayers()[2].getGems().get("black"), 410, 670);
+            g.drawString("" + game.getPlayers()[2].getGems().get("gold"), 500, 670);
+        }
+        //player 4 gems
+        if(game.getPlayers().length > 3){
+            g.drawString("" + game.getPlayers()[3].getGems().get("red"), 1390, 670);
+            g.drawString("" + game.getPlayers()[3].getGems().get("green"), 1485, 670);
+            g.drawString("" + game.getPlayers()[3].getGems().get("blue"), 1575, 670);
+            g.drawString("" + game.getPlayers()[3].getGems().get("white"), 1670, 670);
+            g.drawString("" + game.getPlayers()[3].getGems().get("black"), 1760, 670);
+            g.drawString("" + game.getPlayers()[3].getGems().get("gold"), 1850, 670);
+        }
         //this is testing --> g.drawRect(559, 22, 174, 57);
+        g.setColor(new Color(255, 255, 170));
+        switch(game.getCurrentNum()){
+            case 0:
+                g.drawRoundRect(118, 16, 319, 83, 20, 20);
+                break;
+            case 1:
+                g.drawRoundRect(1468, 16, 319, 83, 20, 20);
+                break;
+            case 2:
+                g.drawRoundRect(118, 525, 319, 83, 20, 20);
+                break;
+            case 3:
+                g.drawRoundRect(1468, 525, 319, 83, 20, 20);
+                break;
+        }
     }//end of paint
 
     public Player[] getPlayers(){
@@ -86,26 +146,26 @@ public class GamePanel extends ParentPanel implements MouseListener{
         
         //System.out.println("player " + game.getCurrent().getName());
         //width of buttons: 174, height of buttons : 57
+        //if(game.getState().equals("endTurn")){
+            if(x >= 559 && x <= 731 && y >= 22 &&  y <= 79){ //draw a wild card
+                if(game.canDraw1("gold") && game.getCurrent().canReserve()){
+                    game.setState("getWildToken");
+                    System.out.println("drawing a wildcard");
+                }
+            } else if(x >= 768 && x <= 942 && y >= 22 &&  y <= 79){//draw 2 gems
+                game.setState("get2gems");
+                System.out.println("drawing 2 of the same gem");
 
-        if(x >= 559 && x <= 731 && y >= 22 &&  y <= 79){ //draw a wild card
-            if(game.canDraw1("gold") && game.getCurrent().canReserve()){
-                game.setState("getWildToken");
-                System.out.println("drawing a wildcard");
+            }else if(x >= 978 && x <= 1152 && y >= 22 &&  y <= 79){//draw 3 gems
+                game.setState("get3gems");
+                System.out.println("drawing 3 different gems");
+
+            }else if(x >= 1188 && x <= 1362 && y >= 22 &&  y <= 79){//buy card
+                game.setState("buyCard");
+                System.out.println("buying a card");
             }
-            
-        } else if(x >= 768 && x <= 942 && y >= 22 &&  y <= 79){//draw 2 gems
-            game.setState("get2gems");
-            System.out.println("drawing 2 of the same gem");
+        //}
 
-        }else if(x >= 978 && x <= 1152 && y >= 22 &&  y <= 79){//draw 3 gems
-            game.setState("get3gems");
-            System.out.println("drawing 3 different gems");
-
-        }else if(x >= 1188 && x <= 1362 && y >= 22 &&  y <= 79){//buy card
-            game.setState("buyCard");
-            System.out.println("buying a card");
-        }
-        
         if(game.getState().equals("getWildToken")){
             game.draw("gold");
             game.setState("getWildCard");
@@ -132,13 +192,10 @@ public class GamePanel extends ParentPanel implements MouseListener{
             if(pos > -1 && tier > 0){
                 game.reserveCard(tier, pos);
                 System.out.println(tier + " " + pos);
+                System.out.println(game.getCurrent());
             }
         }
 
-        //this is only for testing vvv
-        //game.setState("endTurn");
-        
-        if(game.getState().equals("endTurn")) game.endTurn();
         repaint();
     }//mouseClicked
 

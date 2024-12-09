@@ -17,9 +17,9 @@ public class StartPanel extends ParentPanel implements MouseListener{
         chooseImg = null;
         rulesImg = null;
         try{
-            startImg = ImageIO.read(getClass().getResourceAsStream("/Assets/StartScreenBackground.png"));
-            chooseImg = ImageIO.read(getClass().getResourceAsStream("/Assets/StartScreenPlayers.png"));
-            rulesImg = ImageIO.read(getClass().getResourceAsStream("/Assets/Rules.png"));
+            startImg = ImageIO.read(getClass().getResourceAsStream("/StartScreenBackground.png"));
+            chooseImg = ImageIO.read(getClass().getResourceAsStream("/StartScreenPlayers.png"));
+            rulesImg = ImageIO.read(getClass().getResourceAsStream("/Rules.png"));
         }catch(Exception e){
             e.printStackTrace();
         }
