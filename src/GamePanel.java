@@ -1,6 +1,8 @@
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.Objects;
+
 import javax.swing.*;
 
 public class GamePanel extends ParentPanel implements MouseListener{
@@ -110,17 +112,31 @@ public class GamePanel extends ParentPanel implements MouseListener{
         }
 
         if(game.getState().equals("getWildCard")){
-            // Card wantedCard;
-            // int lvl, ind;
-            // //gets the card needed
+            int tier = -1, pos = -1;
+            if(x<756&&x<876)
+                pos = 0;
+            else if(x<900&&x<1020)
+                pos = 1;
+            else if(x<1044&&x<1164)
+                pos = 2;
+            else if(x<1184&&x<1304)
+                pos = 3;
 
+            if(y>334&&y<500)
+                tier = 1;
+            else if(y>530&&y<696)
+                tier = 2;
+            else if(y>726&&y<894)
+                tier = 3;
 
-            // wantedCard = game.getCard(lvl,  ind);
-            // game.getCurrent().addReserved(wantedCard);
+            if(pos > -1 && tier > 0){
+                game.reserveCard(tier, pos);
+                System.out.println(tier + " " + pos);
+            }
         }
 
         //this is only for testing vvv
-        game.setState("endTurn");
+        //game.setState("endTurn");
         
         if(game.getState().equals("endTurn")) game.endTurn();
         repaint();

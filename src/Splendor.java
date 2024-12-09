@@ -206,6 +206,16 @@ public class Splendor{
         return players;
     }
 
+    public void reserveCard(int tier, int pos){
+        if(tier==1){
+            players[currentPlayer].addReserved(seen1[pos]) ;
+        }else if(tier==2){
+            players[currentPlayer].addReserved(seen2[pos]) ;
+        }else if(tier==3){
+            players[currentPlayer].addReserved(seen3[pos]) ;
+        }
+    }
+
     public Player getWinner(){
         //returns the player that has been determined as the winner
         if (winner == null){
