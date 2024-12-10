@@ -1,6 +1,9 @@
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+
 import javax.swing.*;
 
 public class GamePanel extends ParentPanel implements MouseListener{
@@ -9,9 +12,9 @@ public class GamePanel extends ParentPanel implements MouseListener{
     private Image gameBG;
     private Splendor game;
     private int[] bigCardsX = {756, 900, 1044, 1188}, bigCardsY = {0, 334, 530, 726};
-
     public GamePanel(int numPlayers){
         repaint();
+        
         try {
             game = new Splendor(numPlayers);
         } catch (Exception e) {
@@ -118,6 +121,7 @@ public class GamePanel extends ParentPanel implements MouseListener{
                 g.drawRoundRect(1468, 525, 319, 83, 20, 20);
                 break;
         }
+        
     }//end of paint
 
     public Player[] getPlayers(){
