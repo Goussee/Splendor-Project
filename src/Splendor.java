@@ -93,12 +93,23 @@ public class Splendor{
         return x == 1 ? seen1 : x == 2 ? seen2 : x == 3 ? seen3 : null;
     }
 
+    boolean deckIsEmpty(int x){
+        return x == 1 ? deck1.isEmpty() : x == 2 ? deck2.isEmpty() : x == 3 ? deck3.isEmpty() : false;
+    }
+
     boolean canDraw1(String gem){
         return gems.get(gem) >= 1;
     }//end of canDraw2
 
     boolean canDraw3(String gem1, String gem2, String gem3){
-        return gems.get(gem1) > 0 && gems.get(gem2) > 0 && gems.get(gem3) > 0;
+        if(gem1.equals(gem2) || gem2.equals(gem3) || gem1.equals(gem3)) 
+            return false;
+        try{
+            return gems.get(gem1)*gems.get(gem2)*gems.get(gem3) > 0;
+        } catch(Exception e){
+            System.out.println("gem type doesn't exist");
+            return false;
+        }
     }//end of canDraw3
 
     public boolean canDraw2(String gem){
@@ -219,7 +230,6 @@ public class Splendor{
         } catch (Exception e) {
             e.printStackTrace();
         }
-        endTurn();
     }
 
     public Card takeCard(int tier, int pos){

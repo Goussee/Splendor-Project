@@ -1,6 +1,9 @@
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+
 import javax.swing.*;
 
 public class GamePanel extends ParentPanel implements MouseListener{
@@ -13,12 +16,15 @@ public class GamePanel extends ParentPanel implements MouseListener{
 
     public GamePanel(int numPlayers){
         repaint();
+        
         try {
             game = new Splendor(numPlayers);
         } catch (Exception e) {
             e.printStackTrace();
         }
         addMouseListener(this);
+
+
 
         switch (numPlayers) {
             case 2:
@@ -55,7 +61,15 @@ public class GamePanel extends ParentPanel implements MouseListener{
                     System.out.println(e);
                 }
         }
-
+        /*
+        if(!game.deckIsEmpty(1))
+            g.drawImage(ImageLoader.get("/Assets/tier-1-back.png"), 613, 334, 120, 166, null);
+        if(!game.deckIsEmpty(2))
+            g.drawImage(ImageLoader.get("/Assets/tier-2-back.png"), 613, 530, 120, 166, null);
+        if(!game.deckIsEmpty(3))
+            g.drawImage(ImageLoader.get("/Assets/tier-3-back.png"), 613, 725, 120, 166, null);
+        */
+        
         Patron[] patrons = game.getPatrons();
         int xpos = 618;
         for(int i = 0; i < patrons.length; i++){
@@ -80,6 +94,19 @@ public class GamePanel extends ParentPanel implements MouseListener{
         g.drawString("" + game.getPlayers()[0].getGems().get("white"), 315, 165);
         g.drawString("" + game.getPlayers()[0].getGems().get("black"), 410, 165);
         g.drawString("" + game.getPlayers()[0].getGems().get("gold"), 500, 165);
+        int[] xPositions = {11, 1363, 11, 1363};
+        int[] yPositions = {251, 251, 761, 761};
+        for(int i = 0; i < game.getPlayers().length; i++){
+            int x = xPositions[i];
+            for(String s : game.getPlayers()[i].getCards().keySet()){
+                int y = yPositions[i];
+                for(Card c : game.getPlayers()[i].getCards().get(s)){
+                    g.drawImage(c.getImage(), x, y, 90, 126, null);
+                    y += 29;
+                }
+                x += 90;
+            }
+        }
         //player 2 gems
         g.drawString("" + game.getPlayers()[1].getGems().get("red"), 1390, 165);
         g.drawString("" + game.getPlayers()[1].getGems().get("green"), 1485, 165);
@@ -215,8 +242,35 @@ public class GamePanel extends ParentPanel implements MouseListener{
 
             if(pos > -1 && tier > 0){
                 game.reserveCard(tier, pos);
-                System.out.println(tier + " " + pos);
-                System.out.println(game.getCurrent());
+            }
+        }
+
+        if(game.getState().equals("buyCard")){
+            int tier = -1, pos = -1;
+            if(x<756&&x<876)
+                pos = 0;
+            else if(x<900&&x<1020)
+                pos = 1;
+            else if(x<1044&&x<1164)
+                pos = 2;
+            else if(x<1184&&x<1304)
+                pos = 3;
+
+            if(y>334&&y<500)
+                tier = 1;
+            else if(y>530&&y<696)
+                tier = 2;
+            else if(y>726&&y<894)
+                tier = 3;
+
+            if(pos > -1 && tier > 0){
+                Card temp = game.getCard(tier, pos);
+                System.out.println(temp);
+                if(game.getCurrent().canAfford(temp)){
+                    temp = game.takeCard(tier, pos);
+                    game.getCurrent().buy(temp);
+                }
+                game.endTurn();
             }
         }
 
