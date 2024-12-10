@@ -101,7 +101,7 @@ public class Splendor{
         return gems.get(gem1) > 0 && gems.get(gem2) > 0 && gems.get(gem3) > 0;
     }//end of canDraw3
 
-    boolean canDraw2(String gem){
+    public boolean canDraw2(String gem){
         return gems.get(gem) >= 4;
     }//end of canDraw2
 

@@ -9,6 +9,7 @@ public class GamePanel extends ParentPanel implements MouseListener{
     private Image gameBG;
     private Splendor game;
     private int[] bigCardsX = {756, 900, 1044, 1188}, bigCardsY = {0, 334, 530, 726};
+    private int gemsDrawn;
 
     public GamePanel(int numPlayers){
         repaint();
@@ -33,6 +34,8 @@ public class GamePanel extends ParentPanel implements MouseListener{
                 gameBG = ImageLoader.get("/Assets/GamePanelHelp.png").getScaledInstance(1920, 1080, Image.SCALE_SMOOTH);
                 break;
         }
+
+        gemsDrawn = 0;
         //to test use this vvv
         //gameBG = ImageLoader.get("/Assets/GamePanelHelp.png").getScaledInstance(1920, 1080, Image.SCALE_SMOOTH);
 
@@ -118,6 +121,8 @@ public class GamePanel extends ParentPanel implements MouseListener{
                 g.drawRoundRect(1468, 525, 319, 83, 20, 20);
                 break;
         }
+
+        g.drawRect(732, 149, 90, 150);
     }//end of paint
 
     public Player[] getPlayers(){
@@ -146,7 +151,7 @@ public class GamePanel extends ParentPanel implements MouseListener{
         
         //System.out.println("player " + game.getCurrent().getName());
         //width of buttons: 174, height of buttons : 57
-        //if(game.getState().equals("endTurn")){
+        
             if(x >= 559 && x <= 731 && y >= 22 &&  y <= 79){ //draw a wild card
                 if(game.canDraw1("gold") && game.getCurrent().canReserve()){
                     game.setState("getWildToken");
@@ -164,7 +169,26 @@ public class GamePanel extends ParentPanel implements MouseListener{
                 game.setState("buyCard");
                 System.out.println("buying a card");
             }
-        //}
+        
+            // g.drawRect(732, 149, 90, 150);
+            if(game.getState().equals("get2gems")){
+            String wantedGem = "";
+            if(gemsDrawn < 3){
+                if(x >= 612 && x <= 702 && y >= 149 && y <= 299){
+                    wantedGem = "red";
+                }else if(x >= 732 && x <= 822 && y >= 149 && y <= 299){
+                    wantedGem = "green";
+                }else if(x >= 732 && x <= 822 && y >= 149 && y <= 299){
+
+                }
+
+                if(game.canDraw1(wantedGem)){
+                    game.draw2(wantedGem);
+                }
+            }
+        }
+
+
 
         if(game.getState().equals("getWildToken")){
             game.draw("gold");
