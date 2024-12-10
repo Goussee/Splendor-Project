@@ -17,11 +17,11 @@ public class Player implements Comparable<Player>{
         cards.put("blue", new HashSet<Card>());
         cards.put("black", new HashSet<Card>());
         gems = new HashMap<String, Integer>();
-        gems.put("white", 2);
-        gems.put("red", 2);
-        gems.put("green", 2);
-        gems.put("blue", 2);
-        gems.put("black", 2);
+        gems.put("white", 0);
+        gems.put("red", 0);
+        gems.put("green", 0);
+        gems.put("blue", 0);
+        gems.put("black", 0);
         gems.put("gold", 0);
         patrons = new HashSet<Patron>();
         reservedCards = new Card[3];
