@@ -13,6 +13,7 @@ public class GamePanel extends ParentPanel implements MouseListener{
     private Splendor game;
     private int[] bigCardsX = {756, 900, 1044, 1188}, bigCardsY = {0, 334, 530, 726};
     private int gemsDrawn;
+    private String[] gemsWanted;
 
     public GamePanel(int numPlayers){
         repaint();
@@ -42,6 +43,7 @@ public class GamePanel extends ParentPanel implements MouseListener{
         }
 
         gemsDrawn = 0;
+        gemsWanted = new String[3];
         //to test use this vvv
         //gameBG = ImageLoader.get("/Assets/GamePanelHelp.png").getScaledInstance(1920, 1080, Image.SCALE_SMOOTH);
 
@@ -187,14 +189,15 @@ public class GamePanel extends ParentPanel implements MouseListener{
             } else if(x >= 768 && x <= 942 && y >= 22 &&  y <= 79){//draw 2 gems
                 game.setState("get2gems");
                 System.out.println("drawing 2 of the same gem");
-
+                return;
             }else if(x >= 978 && x <= 1152 && y >= 22 &&  y <= 79){//draw 3 gems
                 game.setState("get3gems");
                 System.out.println("drawing 3 different gems");
-
+                return;
             }else if(x >= 1188 && x <= 1362 && y >= 22 &&  y <= 79){//buy card
                 game.setState("buyCard");
                 System.out.println("buying a card");
+                return;
             }
         
             // g.drawRect(732, 149, 90, 150);
@@ -205,13 +208,53 @@ public class GamePanel extends ParentPanel implements MouseListener{
                     wantedGem = "red";
                 }else if(x >= 732 && x <= 822 && y >= 149 && y <= 299){
                     wantedGem = "green";
-                }else if(x >= 732 && x <= 822 && y >= 149 && y <= 299){
-
+                }else if(x >= 853 && x <= 943 && y >= 149 && y <= 299){
+                    wantedGem = "blue";
+                }else if(x >= 975 && x <= 1065 && y >= 149 && y <= 299){
+                    wantedGem = "white";
+                }else if(x >= 1096 && x <= 1186 && y >= 149 && y <= 299){
+                    wantedGem = "black";
                 }
 
-                if(game.canDraw1(wantedGem)){
+                if(game.canDraw2(wantedGem)){
                     game.draw2(wantedGem);
                 }
+            }
+        }
+
+        if(game.getState().equals("get3gems")){
+            boolean lastGem = false;
+            if(gemsDrawn < 3){
+                if(x >= 612 && x <= 702 && y >= 149 && y <= 299){
+                    gemsWanted[gemsDrawn] = "red";
+                    gemsDrawn++;
+                }else if(x >= 732 && x <= 822 && y >= 149 && y <= 299){
+                    gemsWanted[gemsDrawn] = "green";
+                    gemsDrawn++;
+                }else if(x >= 853 && x <= 943 && y >= 149 && y <= 299){
+                    gemsWanted[gemsDrawn] = "blue";
+                    gemsDrawn++;
+
+                }else if(x >= 975 && x <= 1065 && y >= 149 && y <= 299){
+                    gemsWanted[gemsDrawn] = "white";
+                    gemsDrawn++;
+
+                }else if(x >= 1096 && x <= 1186 && y >= 149 && y <= 299){
+                    gemsWanted[gemsDrawn] = "black";
+                    gemsDrawn++;
+
+                }
+                
+            } else{
+
+                if(game.canDraw3(gemsWanted[0], gemsWanted[1], gemsWanted[2])){
+                    game.draw3(gemsWanted[0], gemsWanted[1], gemsWanted[2]);
+                }
+
+                gemsDrawn = 0;
+                gemsWanted[0] = "";
+                gemsWanted[1] = "";
+                gemsWanted[2] = "";
             }
         }
 

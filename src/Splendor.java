@@ -113,6 +113,7 @@ public class Splendor{
     }//end of canDraw3
 
     public boolean canDraw2(String gem){
+        System.out.println(gems.get(gem));
         return gems.get(gem) >= 4;
     }//end of canDraw2
 
@@ -123,6 +124,7 @@ public class Splendor{
         gems.put(gem, gems.get(gem) - 1);
 
         gameState = "draw";
+        endTurn();
     }//end of draw
 
     public void draw2(String gem){
