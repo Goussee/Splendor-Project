@@ -53,7 +53,6 @@ public class GamePanel extends ParentPanel implements MouseListener{
         super.paint(g);
         g.setColor(Color.RED);
         g.drawImage(gameBG, 0, 0, null);
-        game.fillCard();
         for(int tier = 1; tier < 4; tier++){
             Card[] cards = game.getTierCards(tier);
             for(int i = 0; i < cards.length; i++)
@@ -215,6 +214,7 @@ public class GamePanel extends ParentPanel implements MouseListener{
                 return;
             }
         
+            
             // g.drawRect(732, 149, 90, 150);
             if(game.getState().equals("get2gems")){
             String wantedGem = "";
