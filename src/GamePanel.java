@@ -11,8 +11,10 @@ public class GamePanel extends ParentPanel implements MouseListener{
     private int[] bigCardsX = {756, 900, 1044, 1188}, bigCardsY = {0, 334, 530, 726};
     private int gemsDrawn;
     private String[] gemsWanted;
+    private boolean showHidden;
 
     public GamePanel(int numPlayers){
+        showHidden = false;
         repaint();
         
         try {
@@ -163,6 +165,20 @@ public class GamePanel extends ParentPanel implements MouseListener{
             }
         }
 
+        if(showHidden){
+            g.setColor(new Color(0, 0, 100, 50));
+            g.fillRect(0, 0, 1920, 1080);
+
+            int xOffset = 0;
+            for(Card c : game.getCurrent().getReservedCards()){
+                if(c != null){
+                    g.drawImage(c.getImage(), 200 + xOffset, 200, 360, 500, null);
+                }
+                xOffset += 400;
+
+            }
+        }
+
     }//end of paint
 
     public Player[] getPlayers(){
@@ -189,11 +205,14 @@ public class GamePanel extends ParentPanel implements MouseListener{
     public void mouseClicked(MouseEvent e){
         int x = e.getX(), y = e.getY();
         
+        if(showHidden){
+            showHidden = false;
+        }
         //System.out.println("player " + game.getCurrent().getName());
         //width of buttons: 174, height of buttons : 57
         if(game.getState().equals("endTurn")){
             if(x >= 559 && x <= 731 && y >= 22 &&  y <= 79){ //draw a wild card
-                if(game.canDraw1("gold") && game.getCurrent().canReserve()){
+                if(game.getCurrent().canReserve()){
                     game.setState("getWildToken");
                     System.out.println("drawing a wildcard");
                 }
@@ -211,6 +230,37 @@ public class GamePanel extends ParentPanel implements MouseListener{
                 return;
             }
         }
+
+        if(showHidden == false){
+            switch (game.getCurrentNum()) {
+                case 0:
+                    if(x >= 464 && x <= 495 && y >= 31 && y <= 81){
+                        showHidden = true; 
+                    }
+                    break;
+                case 1: 
+                    if(x >= 1813 && x <= 1863 && y >= 31 && y <= 81){
+                        showHidden = true; 
+                    }
+                    break;
+                case 2:
+                    if(x >= 464 && x <= 495 && y >= 537 && y <= 587){
+                        showHidden = true; 
+                    }
+                    break;
+                case 3:
+                    if(x >= 1813 && x <= 1863 && y >= 537 && y <= 587){
+                        showHidden = true; 
+                    }
+                    break;               
+                default:
+                    break;
+            }
+        }
+
+
+
+
         // g.drawRect(732, 149, 90, 150);
         if(game.getState().equals("get2gems")){
              String wantedGem = "";
@@ -272,7 +322,8 @@ public class GamePanel extends ParentPanel implements MouseListener{
 
 
         if(game.getState().equals("getWildToken")){
-            game.draw("gold");
+            if(game.canDraw1("gold"))
+                game.draw("gold");
             game.setState("getWildCard");
         }
 
