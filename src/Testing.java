@@ -5,4 +5,4 @@ public class Testing{
         System.out.println(game.canDraw3("red", "white", "red"));
         //syncing
     }
-}
+}//iuh
