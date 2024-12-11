@@ -124,7 +124,6 @@ public class Splendor{
         gems.put(gem, gems.get(gem) - 1);
 
         gameState = "draw";
-        endTurn();
     }//end of draw
 
     public void draw2(String gem){

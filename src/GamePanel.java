@@ -151,7 +151,22 @@ public class GamePanel extends ParentPanel implements MouseListener{
                 break;
         }
 
-        g.drawRect(732, 149, 90, 150);
+        //testing --> g.drawRect(732, 149, 90, 150);
+
+        if(game.getCurrent().hasReservedCards()){
+            Image enderEye = ImageLoader.get("/Assets/enderEye.png").getScaledInstance(500, 500, Image.SCALE_SMOOTH);
+            switch(game.getCurrentNum()){
+                case 0: g.drawImage(enderEye, 464, 31, 50, 50, null);
+                    break;
+                case 1: g.drawImage(enderEye, 1813, 31, 50, 50, null);
+                    break;
+                case 2: g.drawImage(enderEye, 464, 537, 50, 50, null);
+                    break;
+                case 3: g.drawImage(enderEye, 1813, 537, 50, 50, null);
+                    break;    
+            }
+        }
+
     }//end of paint
 
     public Player[] getPlayers(){
@@ -285,6 +300,7 @@ public class GamePanel extends ParentPanel implements MouseListener{
 
             if(pos > -1 && tier > 0){
                 game.reserveCard(tier, pos);
+                game.endTurn();
             }
         }
 
