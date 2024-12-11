@@ -1,7 +1,6 @@
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.Objects;
 import java.util.Scanner;
 import java.util.Stack;
 public class Splendor{
@@ -112,9 +111,16 @@ public class Splendor{
         }
     }//end of canDraw3
 
-    public boolean canDraw2(String gem){
-        System.out.println(gems.get(gem));
-        return gems.get(gem) >= 4;
+    boolean canDraw2(String gem){
+        try{
+            if(gems.get(gem)<4)
+                return false;
+            else
+                return true;
+        } catch(Exception e){
+            System.out.println("gem type doesn't exist");
+            return false;
+        }
     }//end of canDraw2
 
     public void draw(String gem){ //probably shouldn't use this
@@ -177,46 +183,33 @@ public class Splendor{
         winner = getWinner();
     }//end of endGame
 
-    public void fillCard(){
-        for(int i = 0; i < 4; i++){
-            if(Objects.isNull(seen1[i])){
-                seen1[i] = deck1.pop();
-                return;
-            }
-            if(Objects.isNull(seen2[i])){
-                seen2[i] = deck2.pop();
-                return;
-            }
-            if(Objects.isNull(seen3[i])){
-                seen3[i] = deck3.pop();
-                return;
-            }
-        }
+    public void fillCard(int tier, int pos){
+        System.out.println("filling cards");
+        if(pos < 0 || pos > 3 || tier < 1 || tier > 3)  
+            return;
+        Card temp = tier == 1 ? deck1.pop() : tier == 2 ? deck2.pop() : tier == 3 ? deck3.pop() : null;
+        getTierCards(tier)[pos] = temp;
+        
     }//end of fillCard
 
-    public Card getCard(int level, int index){
+    public Card getCard(int tier, int pos){
         Card taken = null;
-        if(index <= 0 || index >= 4)
-            switch(level){
-                case 1: return deck1.pop();
-                case 2: return deck2.pop();
-                case 3: return deck3.pop();
-            }
-        else
-            switch(level){
-                case 1:
-                    taken = seen1[index-1];
-                    seen1[index-1] = null;
-                    break;
-                case 2:
-                    taken = seen2[index-1];
-                    seen2[index-1] = null;
-                    break;
-                case 3:
-                    taken = seen3[index-1];
-                    seen3[index-1] = null;
-                    break;
-            }
+        if(pos < 0 || pos > 3)
+            return null;
+        switch(tier){
+            case 1:
+                taken = seen1[pos];
+                seen1[pos] = null;
+                break;
+            case 2:
+                taken = seen2[pos];
+                seen2[pos] = null;
+                break;
+            case 3:
+                taken = seen3[pos];
+                seen3[pos] = null;
+                break;
+        }
         gameState = "endTurn";
         return taken;
     }
@@ -237,7 +230,7 @@ public class Splendor{
         Card temp = getCard(tier, pos);
         try {
             getTierCards(tier)[pos] = null;
-            fillCard();
+            fillCard(tier, pos);
         } catch (Exception e) {
 
         }

@@ -63,14 +63,14 @@ public class GamePanel extends ParentPanel implements MouseListener{
                     System.out.println(e);
                 }
         }
-        /*
+        
         if(!game.deckIsEmpty(1))
             g.drawImage(ImageLoader.get("/Assets/tier-1-back.png"), 613, 334, 120, 166, null);
         if(!game.deckIsEmpty(2))
             g.drawImage(ImageLoader.get("/Assets/tier-2-back.png"), 613, 530, 120, 166, null);
         if(!game.deckIsEmpty(3))
             g.drawImage(ImageLoader.get("/Assets/tier-3-back.png"), 613, 725, 120, 166, null);
-        */
+        
         
         Patron[] patrons = game.getPatrons();
         int xpos = 618;
