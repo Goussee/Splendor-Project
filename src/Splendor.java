@@ -1,6 +1,7 @@
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Objects;
 import java.util.Scanner;
 import java.util.Stack;
 public class Splendor{
@@ -191,6 +192,14 @@ public class Splendor{
         getTierCards(tier)[pos] = temp;
         
     }//end of fillCard
+
+    public void addGems(HashMap<String, Integer> cost){
+        if(Objects.isNull(cost))
+            return;
+        for(String s : cost.keySet()){
+            gems.put(s, gems.get(s) + cost.get(s));
+        }
+    }
 
     public Card getCard(int tier, int pos){
         Card taken = null;

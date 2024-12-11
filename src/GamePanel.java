@@ -374,7 +374,10 @@ public class GamePanel extends ParentPanel implements MouseListener{
                 System.out.println(temp);
                 if(game.getCurrent().canAfford(temp)){
                     temp = game.takeCard(tier, pos);
-                    game.getCurrent().buy(temp);
+                    System.out.println(game.getCurrent().getGems());
+                    game.fillCard(tier, pos);
+                    game.addGems(game.getCurrent().buy(temp));
+                    System.out.println(game.getCurrent().getGems());
                 }
                 game.endTurn();
             }
