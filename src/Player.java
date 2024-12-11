@@ -17,11 +17,11 @@ public class Player implements Comparable<Player>{
         cards.put("blue", new HashSet<Card>());
         cards.put("black", new HashSet<Card>());
         gems = new HashMap<String, Integer>();
-        gems.put("white", 0);
-        gems.put("red", 0);
-        gems.put("green", 0);
-        gems.put("blue", 0);
-        gems.put("black", 0);
+        gems.put("white", 10);
+        gems.put("red", 10);
+        gems.put("green", 10);
+        gems.put("blue", 10);
+        gems.put("black", 10);
         gems.put("gold", 0);
         patrons = new HashSet<Patron>();
         reservedCards = new Card[3];
@@ -105,7 +105,9 @@ public class Player implements Comparable<Player>{
     }
 
     public HashMap<String, Integer> buy(Card c){
-        HashMap<String, Integer> cost = c.getCost(); 
+        if(Objects.isNull(c))
+            return null;
+        HashMap<String, Integer> cost = c.getCost();
         int coinsNeeded = 0;
         for(String gem : cost.keySet()){
             if(getDiscount(gem) >= cost.get(gem))
