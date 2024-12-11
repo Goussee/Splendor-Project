@@ -1,9 +1,6 @@
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
-
 import javax.swing.*;
 
 public class GamePanel extends ParentPanel implements MouseListener{
@@ -194,7 +191,7 @@ public class GamePanel extends ParentPanel implements MouseListener{
         
         //System.out.println("player " + game.getCurrent().getName());
         //width of buttons: 174, height of buttons : 57
-        
+        if(game.getState().equals("endTurn")){
             if(x >= 559 && x <= 731 && y >= 22 &&  y <= 79){ //draw a wild card
                 if(game.canDraw1("gold") && game.getCurrent().canReserve()){
                     game.setState("getWildToken");
@@ -213,11 +210,10 @@ public class GamePanel extends ParentPanel implements MouseListener{
                 System.out.println("buying a card");
                 return;
             }
-        
-            
-            // g.drawRect(732, 149, 90, 150);
-            if(game.getState().equals("get2gems")){
-            String wantedGem = "";
+        }
+        // g.drawRect(732, 149, 90, 150);
+        if(game.getState().equals("get2gems")){
+             String wantedGem = "";
             if(gemsDrawn < 3){
                 if(x >= 612 && x <= 702 && y >= 149 && y <= 299){
                     wantedGem = "red";
