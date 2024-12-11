@@ -1,9 +1,6 @@
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
-
 import javax.swing.*;
 
 public class GamePanel extends ParentPanel implements MouseListener{
@@ -53,7 +50,6 @@ public class GamePanel extends ParentPanel implements MouseListener{
         super.paint(g);
         g.setColor(Color.RED);
         g.drawImage(gameBG, 0, 0, null);
-        game.fillCard();
         for(int tier = 1; tier < 4; tier++){
             Card[] cards = game.getTierCards(tier);
             for(int i = 0; i < cards.length; i++)
